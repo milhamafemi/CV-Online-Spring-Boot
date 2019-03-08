@@ -1,0 +1,101 @@
+
+Connected to: Oracle Database 11g Express Edition Release 11.2.0.2.0 - Production
+EXP-00023: must be a DBA to do Full Database or Tablespace export
+Export done in WE8MSWIN1252 character set and AL16UTF16 NCHAR character set
+server uses AL32UTF8 character set (possible charset conversion)
+. exporting pre-schema procedural objects and actions
+. exporting foreign function library names for user CV 
+. exporting PUBLIC type synonyms
+. exporting private type synonyms
+. exporting object type definitions for user CV 
+About to export CV's objects ...
+. exporting database links
+. exporting sequence numbers
+. exporting cluster definitions
+. about to export CV's tables via Conventional Path ...
+. . exporting table                    ACHIEVEMENT          6 rows exported
+EXP-00091: Exporting questionable statistics.
+EXP-00091: Exporting questionable statistics.
+. . exporting table                  CERTIFICATION          6 rows exported
+EXP-00091: Exporting questionable statistics.
+EXP-00091: Exporting questionable statistics.
+. . exporting table                         CLIENT          3 rows exported
+EXP-00091: Exporting questionable statistics.
+EXP-00091: Exporting questionable statistics.
+. . exporting table                      EDUCATION          8 rows exported
+EXP-00091: Exporting questionable statistics.
+EXP-00091: Exporting questionable statistics.
+. . exporting table                       EMPLOYEE          7 rows exported
+EXP-00091: Exporting questionable statistics.
+EXP-00091: Exporting questionable statistics.
+. . exporting table                     EXPERIENCE          6 rows exported
+EXP-00091: Exporting questionable statistics.
+EXP-00091: Exporting questionable statistics.
+. . exporting table                       LANGUAGE          6 rows exported
+EXP-00091: Exporting questionable statistics.
+EXP-00091: Exporting questionable statistics.
+. . exporting table              LANGUAGE_EMPLOYEE          6 rows exported
+EXP-00091: Exporting questionable statistics.
+EXP-00091: Exporting questionable statistics.
+. . exporting table                          MAJOR          6 rows exported
+EXP-00091: Exporting questionable statistics.
+EXP-00091: Exporting questionable statistics.
+. . exporting table               MAJOR_UNIVERSITY          6 rows exported
+EXP-00091: Exporting questionable statistics.
+EXP-00091: Exporting questionable statistics.
+. . exporting table                       MII_INFO          2 rows exported
+EXP-00091: Exporting questionable statistics.
+EXP-00091: Exporting questionable statistics.
+. . exporting table                   ORGANIZATION          5 rows exported
+EXP-00091: Exporting questionable statistics.
+EXP-00091: Exporting questionable statistics.
+. . exporting table                        PROJECT          7 rows exported
+EXP-00091: Exporting questionable statistics.
+EXP-00091: Exporting questionable statistics.
+. . exporting table               PROJECT_EMPLOYEE          9 rows exported
+EXP-00091: Exporting questionable statistics.
+EXP-00091: Exporting questionable statistics.
+. . exporting table                  QUALIFICATION         11 rows exported
+EXP-00091: Exporting questionable statistics.
+EXP-00091: Exporting questionable statistics.
+. . exporting table         QUALIFICATION_EMPLOYEE          8 rows exported
+EXP-00091: Exporting questionable statistics.
+EXP-00091: Exporting questionable statistics.
+. . exporting table                       ROLE_MII          7 rows exported
+EXP-00091: Exporting questionable statistics.
+EXP-00091: Exporting questionable statistics.
+. . exporting table                           TEST          4 rows exported
+EXP-00091: Exporting questionable statistics.
+EXP-00091: Exporting questionable statistics.
+. . exporting table                   TEST_TRIGGER          6 rows exported
+EXP-00091: Exporting questionable statistics.
+EXP-00091: Exporting questionable statistics.
+. . exporting table                       TRAINING          5 rows exported
+EXP-00091: Exporting questionable statistics.
+EXP-00091: Exporting questionable statistics.
+. . exporting table                     UNIVERSITY          6 rows exported
+EXP-00091: Exporting questionable statistics.
+EXP-00091: Exporting questionable statistics.
+. . exporting table                       USER_MII         15 rows exported
+EXP-00091: Exporting questionable statistics.
+EXP-00091: Exporting questionable statistics.
+. . exporting table                WORK_ASSIGNMENT          6 rows exported
+EXP-00091: Exporting questionable statistics.
+EXP-00091: Exporting questionable statistics.
+. exporting synonyms
+. exporting views
+. exporting stored procedures
+. exporting operators
+. exporting referential integrity constraints
+. exporting triggers
+. exporting indextypes
+. exporting bitmap, functional and extensible indexes
+. exporting posttables actions
+. exporting materialized views
+. exporting snapshot logs
+. exporting job queues
+. exporting refresh groups and children
+. exporting dimensions
+. exporting post-schema procedural objects and actions
+. exporting statistics
+Export terminated successfully with warnings.
