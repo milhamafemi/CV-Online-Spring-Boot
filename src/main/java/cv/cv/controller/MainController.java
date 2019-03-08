@@ -92,7 +92,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  *
- * @author NINDA
+ * @author 
  */
 @Controller
 public class MainController {
