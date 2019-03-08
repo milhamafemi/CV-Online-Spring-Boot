@@ -1,0 +1,1340 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+        <meta name="description" content=""/>
+        <meta name="author" content=""/>
+        <link rel="icon" th:href="@{/dist/img/favicons/favicon.ico}"/>
+
+        <title>Dashboard Template for Bootstrap</title>
+
+        <!-- Bootstrap core CSS -->
+        <link th:href="@{/dist/css/bootstrap.min.css}" rel="stylesheet"/>
+        <!--Font Awesome-->
+        <link th:href="@{/dist/font-awesome/css/font-awesome.min.css}" rel="stylesheet"/>
+        <!--Datatables-->
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css"/>
+
+        <!-- Custom styles for this template -->
+        <link th:href="@{/dist/css/dashboard.css}" rel="stylesheet"/>
+        <link th:href="@{/plugins/sweetalert/sweetalert.css}" rel="stylesheet"/>
+    </head>
+
+    <body>
+        <div th:include="fragments/navigation::nav">
+
+
+        </div>
+
+        <div class="container-fluid">
+            <div class="row">
+                <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+                    <div class="sidebar-sticky">
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link " href="/emphome">
+                                    <span data-feather="emphome"></span>
+                                    Dashboard <span class="sr-only">(current)</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="/profilEmployee">
+                                    <span data-feather="profilEmployee"></span>
+                                    Profile <span class="sr-only">(current)</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link " href="/empproject">
+                                    <span data-feather="empproject"></span>
+                                    My Project <span class="sr-only">(current)</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link " href="/empreport">
+                                    <span data-feather="empreport"></span>
+                                    Report <span class="sr-only">(current)</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+
+                <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                        <h1 class="h2" th:each=" pe: ${profilEmployee}" th:text="${pe.userMii.name}"></h1>
+                    </div>
+
+                    <!-- Content -->
+                    <h4><font color="#3973ac">Personal Data </font></h4>
+                    <div class="row" style="padding: 10px 0 10px 0">
+
+                    </div>
+
+                    <div class ="form edit" th:each=" pe: ${profilEmployee}">
+                        <table id="exampleProfil" class="table" style="width: 50%">
+                            <tr>
+                                <td>Date of Birth</td>
+                                <td th:text="${#dates.format(pe.birthDate,'dd-MMM-YYYY')}"></td>
+                            </tr>  
+                            <tr>
+                                <td>Nationality</td>
+                                <td th:text="${pe.nationality}"></td>
+                            </tr>
+                            <tr>
+                                <td>Marital Status</td>
+                                <td th:text="${pe.maritalStatus}"></td>
+                            </tr>
+                            <tr>
+                                <td>Gender</td>
+                                <td th:text="${pe.gender}"></td>
+                            </tr>
+
+                            <tr>
+                                <td>Religion</td>
+                                <td th:text="${pe.religion}"></td>
+                            </tr>
+                            <tr>
+                                <td>ID</td>
+                                <td th:text="${pe.id}"></td>
+                            </tr>
+                            <tr>
+                                <td>Email</td>
+                                <td th:text="${pe.userMii.email}"></td>
+                            </tr>
+                            <tr>
+                                <td>Phone</td>
+                                <td th:text="${pe.phone}"></td>
+                            </tr>
+                            <tr>
+                                <td th:text="${pe.id}"hidden></td>
+                                <td th:text="${pe.userMii.name}"hidden></td>
+                                <td th:text="${pe.userMii.email}"hidden></td>
+                                <td th:text="${pe.phone}"hidden></td>
+                                <td th:text="${pe.gender}"hidden></td>
+                                <td th:text="${pe.religion}"hidden></td>
+                                <td th:text="${pe.maritalStatus}"hidden></td>
+                                <td th:text="${pe.nationality}"hidden></td>
+                                <td th:text="${#dates.format(pe.birthDate,'dd-MMM-YYYY')}"hidden></td>
+                                <td th:text="${#dates.format(pe.startDate,'dd-MMM-YYYY')}"hidden></td>
+                                <td th:text="${#dates.format(pe.endDate,'dd-MMM-YYYY')}"hidden></td>
+                                <td th:text="${pe.userMii.password}"hidden></td>
+                                <td th:text="${pe.userMii.role.id}"hidden></td>
+                                <td> <button data-target="#mdlEditProfil" data-toggle="modal" class="btn btn-success btn-sm btnEditProfil"><i class="fa fa-edit"></i> Edit</button>
+                                    <!--<button data-target="#mdlChangePassword" data-toggle="modal" class="btn btn-success btn-sm btnEditProfil"><i class="fa fa-edit"></i> Edit</button>-->
+                                </td>
+                            </tr>
+
+                        </table>
+                    </div>
+                    <div class ="form edit" th:each=" pe: ${dataUser}">
+                        <table id="examplePassword"  style="width: 50%">
+                            <tr>
+                                <td th:text="${pe.id}" hidden></td>
+                                <td th:text="${pe.name}" hidden></td>
+                                <td th:text="${pe.email}" hidden></td>
+                                <td th:text="${pe.role.id}" hidden></td>
+                                <td th:text="${pe.password}" hidden></td>
+                                <td> <button data-target="#mdlChangePassword" data-toggle="modal" class="btn btn-warning btn-sm btnChangePassword"><i class="fa fa-edit"></i> ChangePassword</button></td>
+                            </tr>
+                        </table>
+                        <br>
+                        <br>
+                        <br>
+                    </div>
+
+                    <!-- /.End Content -->
+                    <!-- modal edit employee profile-->
+                    <div class="modal fade" id="mdlEditProfil" tabindex="-1" role="dialog" aria-labelledby="modal-add" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modal-add">Edit Profile</h5>
+                                    <button class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <form th:action="@{/profilemployeesave}" method="post" >
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <div class="form-group">
+                                                <input id="getIdEmployee" th:field="*{usersave.id}" class="form-control" type="hidden"/>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="getNameEmployee">Name :</label>
+                                                <input id="getNameEmployee" th:field="*{usersave.name}" class="form-control" type="text"/>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="getEmailEmployee">Email :</label>
+                                                <input id="getEmailEmployee" th:field="*{usersave.email}"class="form-control" type="text"/>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="getPhone">Phone :</label>
+                                                <input id="getPhone" th:field="*{employeesave.phone}" class="form-control" type="text"/>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="getGender">Gender :</label>
+                                                <select id="getGender" class="form-control" name="gender" th:field="*{employeesave.gender}">
+                                                    <option class="form-control"
+                                                            th:each=" gd:${dataGender}"
+                                                            th:value="${gd}"
+                                                            th:text="${gd}">
+                                                    </option>
+                                                </select>   
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="getReligion">Religion :</label>
+                                                <select id="getReligion" class="form-control" name="religion" th:field="*{employeesave.religion}">
+                                                    <option class="form-control"
+                                                            th:each=" rlg:${dataReligion}"
+                                                            th:value="${rlg}"
+                                                            th:text="${rlg}">
+                                                    </option>
+                                                </select>   
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="getMarital">Marital Status:</label>
+                                                <select id="getMarital" class="form-control" name="marital" th:field="*{employeesave.maritalStatus}">
+                                                    <option class="form-control"
+                                                            th:each=" mrl:${dataMarital}"
+                                                            th:value="${mrl}"
+                                                            th:text="${mrl}">
+                                                    </option>
+                                                </select>   
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="getNationality">Nationality :</label>
+                                                <input id="getNationality" th:field="*{employeesave.nationality}" class="form-control" type="text"/>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="getBirth">Date of Birth :</label>
+                                                <input id="getBirth" th:field="*{employeesave.birthDate}" class="form-control" type="date"/>
+                                            </div>
+                                            <div class="form-group">
+                                                <input id="getStart" th:field="*{employeesave.startDate}" class="form-control" type="date" hidden/>
+                                            </div>
+                                            <div class="form-group">
+                                                <input id="getEnd" th:field="*{employeesave.endDate}" class="form-control" type="date"hidden/>
+                                            </div>
+                                            <div class="form-group">
+                                                <input id="getPasswordEmployee" th:field="*{usersave.password}" class="form-control" type="hidden"/>
+                                            </div>
+                                            <div class="form-group">
+                                                <input id="getRole" th:field="*{usersave.role}" class="form-control" type="hidden"/>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                <button type="submit" value="Submit" class="btn btn-default">Save</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.modal edit employee profil -->
+                    <!-- modal change password-->
+                    <div class="modal fade" id="mdlChangePassword" tabindex="-1" role="dialog" aria-labelledby="modal-add" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modal-add">Change Password</h5>
+                                    <button class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <form th:action="@{/changepassword}" method="post" >
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <div class="form-group">
+                                                <input id="getIdChangePassword" th:field="*{usersave.id}" class="form-control" type="hidden"/>
+                                            </div>
+                                            <div class="form-group">
+                                                <input id="getNameChangePassword" th:field="*{usersave.name}" class="form-control" type="hidden"/>
+                                            </div>
+                                            <div class="form-group">
+                                                <input id="getEmailChangePassword" th:field="*{usersave.email}"class="form-control" type="hidden"/>
+                                            </div>
+                                            <div class="form-group">
+                                                <input id="getRoleChangePassword" th:field="*{usersave.role}" class="form-control" type="hidden"/>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="getPasswordChangePassword">New Password :</label>
+                                                <input id="getPasswordEChangePassword" th:field="*{usersave.password}" class="form-control" type="text"/>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                <button type="submit" value="Submit" class="btn btn-default">Save</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.modal change password -->
+
+                    <!-- Language Employee Content -->
+                    <h4>Foreign Language</h4>
+                    <div class="row" style="padding: 10px 0 10px 0">
+                        <div class="col-sm-6">
+                            <button data-target="#mdlAddLanguageEmployee" data-toggle="modal" th:data-id="${maxidLanguageEmployee}" class="btn btn-warning btnAddLanguageEmployee"><i class="fa fa-plus"></i></button>
+                        </div>
+                    </div>
+                    <table id="exampleLanguageEmployee" class="table-striped" style="width: 100%">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Language</th>
+                                <th>id Language</th>
+                                <th>Id</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="tblDataLanguageEmployee">
+                            <tr th:each="as,i : ${dataLanguageEmployee}"  >
+                                <td th:text="${i.count}"></td>
+                                <td th:text="${as.Language.name}"> </td>
+                                <td th:text="${as.Language.id}"> </td>
+                                <td th:text="${as.id}"></td>
+                                <td> 
+                                    <button data-target="#mdlEditLanguageEmployee" data-toggle="modal" class="btn btn-success btn-sm btnEditLanguageEmployee"><i class="fa fa-edit"></i> Edit</button>
+                                    <button class="btn btn-danger btn-sm btnDeleteLanguageEmployee" th:data-id="${as.id}"><i class="fa fa-trash"></i>Delete</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br>
+                    <br>
+                    <br>
+                    <!-- /.Language Employee End Content -->
+                    <!-- modal add LanguageEmployee data -->
+                    <div class="modal fade" id="mdlAddLanguageEmployee" tabindex="-1" role="dialog" aria-labelledby="modal-add" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modal-add">Add Language Employee</h5>
+                                    <button class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <form th:action="@{/languageemployeesave}" method="post" >
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <input id="idlanguageemployee" th:field="*{languageemployeesave.id}" class="form-control" type="hidden"/>
+                                        </div>
+                                        <div>
+                                            <label for="le">Language :</label>
+                                            <select id="fla" class="form-control" th:field="*{languageemployeesave.language.id}">
+                                                <option class="form-control"
+                                                        th:each=" fla:${findlanguage}"
+                                                        th:value="${fla.id}"
+                                                        th:text="${fla.name}">
+                                                </option>
+                                            </select>   
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        <button type="submit" value="Submit" class="btn btn-default">Save</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.modal add LanguageEmployee data -->
+                    <!-- modal edit LanguageEmployee data -->
+                    <div class="modal fade" id="mdlEditLanguageEmployee" tabindex="-1" role="dialog" aria-labelledby="modal-add" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modal-add">Edit Language Employee</h5>
+                                    <button class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <form th:action="@{/languageemployeesave}" method="post" >
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <input id="getIdLanguage" th:field="*{languageemployeesave.id}" class="form-control" type="hidden"/>
+                                        </div>
+                                        <div>
+                                            <label for="le">Language :</label>
+                                            <select id="getForeignLanguage" class="form-control" name="getLanguage" th:field="*{languageemployeesave.language.id}">
+                                                <option class="form-control"
+                                                        th:each=" fla:${findlanguage}"
+                                                        th:value="${fla.id}"
+                                                        th:text="${fla.name}">
+                                                </option>
+                                            </select>   
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        <button type="submit" value="Submit" class="btn btn-default">Save</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.modal edit LanguageEmployee data -->
+                    <!-- Education Content -->
+                    <h4><font color="#3973ac">Educational Qualification</font></h4>
+                    <div class="row" style="padding: 10px 0 10px 0">
+                        <div class="col-sm-6">
+                            <button data-target="#mdlAddEducation" data-toggle="modal" th:data-id="${maxidEducation}" class="btn btn-warning btnAddEducation"><i class="fa fa-plus"></i></button>
+                        </div>
+                    </div>
+                    <table id="exampleEducation" class="table-striped" style="width: 100%">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                <th>GPA</th>
+                                <th>Major</th>
+                                <th>University</th>
+                                <th>ID major university</th>
+                                <th>Id</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="tblDataEducation">
+                            <tr th:each="as,i : ${dataEducation}"  >
+                                <td th:text="${i.count}"></td>
+                                <td th:text="${#dates.format(as.startDate,'dd-MMM-YYYY')}"> </td>
+                                <td th:text="${#dates.format(as.endDate,'dd-MMM-YYYY')}"> </td>
+                                <td th:text="${as.ip}"> </td>
+                                <td th:text="${as.majorUniversity.Major.name}"></td>
+                                <td th:text="${as.majorUniversity.University.name}"></td>
+                                <td th:text="${as.majorUniversity.id}"></td>
+                                <td th:text="${as.id}"></td> 
+                                <td>
+                                    <button data-target="#mdlEditEducation" data-toggle="modal" class="btn btn-success btn-sm btnEditEducation"><i class="fa fa-edit"></i> Edit</button>
+                                    <button class="btn btn-danger btn-sm btnDeleteEducation" th:data-id="${as.id}"><i class="fa fa-trash"></i>Delete</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br>
+                    <br>
+                    <br>
+                    <!-- /.Education End Content -->
+                    <!-- modal add education data -->
+                    <div class="modal fade" id="mdlAddEducation" tabindex="-1" role="dialog" aria-labelledby="modal-add" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modal-add">Add Education</h5>
+                                    <button class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <form th:action="@{/educationsave}" method="post" >
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <input id="ideducation" th:field="*{educationsave.id}" class="form-control" type="hidden"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="startDate">Start Date :</label>
+                                            <input id="startDate" th:field="*{educationsave.startDate}" class="form-control" type="date"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="endDate">End Date :</label>
+                                            <input id="endDate" th:field="*{educationsave.endDate}" class="form-control" type="date"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="ip">GPA :</label>
+                                            <input id="ip" th:field="*{educationsave.ip}" class="form-control" type="text"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="mu">Major and University :</label>
+                                            <select th:field="*{educationsave.majorUniversity.id}">
+                                                <option class="form-control"
+                                                        th:each=" mu:${findmajoruniversity}"
+                                                        th:value="${mu.id}"
+                                                        th:text="${mu.major.name} +'-'+ ${mu.university.name}">
+                                                </option>
+                                            </select>   
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        <button type="submit" value="Submit" class="btn btn-default">Save</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.modal add education data -->
+                    <!-- modal edit education data -->
+                    <div class="modal fade" id="mdlEditEducation" tabindex="-1" role="dialog" aria-labelledby="modal-add" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modal-add">Edit Education</h5>
+                                    <button class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <form th:action="@{/educationsave}" method="post" >
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <input id="getIdEducation" th:field="*{educationsave.id}" class="form-control" type="hidden"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="getStartMU">Start Date :</label>
+                                            <input id="getStartMU" th:field="*{educationsave.startDate}" class="form-control" type="date"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="getEndMU">End Date :</label>
+                                            <input id="getEndMU" th:field="*{educationsave.endDate}" class="form-control" type="date"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="getIP">GPA :</label>
+                                            <input id="getIP" th:field="*{educationsave.ip}" class="form-control" type="text"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="mu">Major and University :</label>
+                                            <select id="getMajorUniversity" class="form-control" th:field="*{educationsave.majorUniversity.id}">
+                                                <option class="form-control"
+                                                        th:each=" mu:${findmajoruniversity}"
+                                                        th:value="${mu.id}"
+                                                        th:text="${mu.major.name} +'-'+ ${mu.university.name}">
+                                                </option>
+                                            </select>   
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        <button type="submit" value="Submit" class="btn btn-default">Save</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.modal edit education data -->
+
+                    <!-- Qualification Employee Content -->
+                    <h4><font color="#3973ac">Technical Qualification</font></h4>
+                    <div class="row" style="padding: 10px 0 10px 0">
+                        <div class="col-sm-6">
+                            <button data-target="#mdlAddQualificationEmployee" data-toggle="modal" th:data-id="${maxidQualificationEmployee}" class="btn btn-warning btnAddQualificationEmployee"><i class="fa fa-plus"></i></button>
+                        </div>
+                    </div>
+                    <table id="exampleQualificationEmployee" class="table-striped" style="width: 100%">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Qualification</th>
+                                <th>Specialization</th>
+                                <th>id qualification employee</th>
+                                <th>Id</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="tblDataQualificationEmployee">
+                            <tr th:each="as,i : ${dataQualificationEmployee}"  >
+                                <td th:text="${i.count}"></td>
+                                <td th:text="${as.qualification.name}"> </td>
+                                <td th:text="${as.qualification.specialization}"> </td>
+                                <td th:text="${as.qualification.id}"> </td>
+                                <td th:text="${as.id}"></td>
+                                <td> 
+                                    <button data-target="#mdlEditQualificationEmployee" data-toggle="modal" class="btn btn-success btn-sm btnEditQualificationEmployee"><i class="fa fa-edit"></i> Edit</button>
+                                    <button class="btn btn-danger btn-sm btnDeleteQualificationEmployee" th:data-id="${as.id}"><i class="fa fa-trash"></i>Delete</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br>
+                    <br>
+                    <br>
+                    <!-- /.Qualification Employee End Content -->
+                    <!-- modal add QualificationEmployee data -->
+                    <div class="modal fade" id="mdlAddQualificationEmployee" tabindex="-1" role="dialog" aria-labelledby="modal-add" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modal-add">Add Qualification Employee</h5>
+                                    <button class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <form th:action="@{/qualificationemployeesave}" method="post" >
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <input id="idqualificationemployee" th:field="*{qualificationemployeesave.id}" class="form-control" type="hidden"/>
+                                        </div>
+                                        <div>
+                                            <label for="le">Qualification :</label>
+                                            <select th:field="*{qualificationemployeesave.qualification.id}">
+                                                <option class="form-control"
+                                                        th:each=" q:${findqualification}"
+                                                        th:value="${q.id}"
+                                                        th:text="${q.name}">
+                                                </option>
+                                            </select>   
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        <button type="submit" value="Submit" class="btn btn-default">Save</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.modal add QualificationEmployee data -->
+                    <!-- modal edit QualificationEmployee data -->
+                    <div class="modal fade" id="mdlEditQualificationEmployee" tabindex="-1" role="dialog" aria-labelledby="modal-add" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modal-add">Edit Qualification Employee</h5>
+                                    <button class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <form th:action="@{/qualificationemployeesave}" method="post" >
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <input id="getIdQualificationEmployee" th:field="*{qualificationemployeesave.id}" class="form-control" type="hidden"/>
+                                        </div>
+                                        <div>
+                                            <label for="le">Qualification :</label>
+                                            <select id="getQualificationEmployee" class="form-control" th:field="*{qualificationemployeesave.qualification.id}">
+                                                <option class="form-control"
+                                                        th:each=" q:${findqualification}"
+                                                        th:value="${q.id}"
+                                                        th:text="${q.name}">
+                                                </option>
+                                            </select>  
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        <button type="submit" value="Submit" class="btn btn-default">Save</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.modal edit QualificationEmployee data -->
+
+                    <!-- WorkAssignment Content -->
+                    <h4><font color="#3973ac">Work Assignment</font></h4>
+                    <div class="row" style="padding: 10px 0 10px 0">
+                        <div class="col-sm-6">
+                            <button data-target="#mdlAddWorkAssignment" data-toggle="modal" th:data-id="${maxidWorkAssignment}" class="btn btn-warning btnAddWorkAssignment"><i class="fa fa-plus"></i></button>
+                        </div>
+                    </div>
+                    <table id="exampleWorkAssignment" class="table-striped" style="width: 100%">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                <th>Position</th>
+                                <th>Company</th>
+                                <th>Job Description</th>
+                                <th>Id</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="tblDataWorkAssignment">
+                            <tr th:each="as,i : ${dataWorkAssignment}"  >
+                                <td th:text="${i.count}"></td>
+                                <td th:text="${#dates.format(as.startDate,'dd-MMM-YYYY')}"> </td>
+                                <td th:text="${#dates.format(as.endDate,'dd-MMM-YYYY')}"> </td>
+                                <td th:text="${as.position}"> </td>
+                                <td th:text="${as.company}"></td>
+                                <td th:text="${as.jobDescription}"></td>
+                                <td th:text="${as.id}"></td>
+                                <td> 
+                                    <button data-target="#mdlEditWorkAssignment" data-toggle="modal" class="btn btn-success btn-sm btnEditWorkAssignment"><i class="fa fa-edit"></i> Edit</button>
+                                    <button class="btn btn-danger btn-sm btnDeleteWorkAssignment" th:data-id="${as.id}"><i class="fa fa-trash"></i>Delete</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br>
+                    <br>
+                    <br>
+                    <!-- /.WorkAssignment End Content -->
+                    <!-- modal add WorkAssignment data -->
+                    <div class="modal fade" id="mdlAddWorkAssignment" tabindex="-1" role="dialog" aria-labelledby="modal-add" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modal-add">Add Work Assignment</h5>
+                                    <button class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <form th:action="@{/worksave}" method="post">
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <input id="idwork" th:field="*{worksave.id}" class="form-control" type="hidden"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="startDate">Start Date :</label>
+                                            <input id="startDate" th:field="*{worksave.startDate}" class="form-control" type="date"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="endDate">End Date :</label>
+                                            <input id="endDate" th:field="*{worksave.endDate}" class="form-control" type="date"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="positionwork">Position :</label>
+                                            <input id="positionwork" th:field="*{worksave.position}" class="form-control" type="text"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="company">Company :</label>
+                                            <input id="company" th:field="*{worksave.company}" class="form-control" type="text"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="jobdescription">Job Description :</label>
+                                            <input id="jobdescription" th:field="*{worksave.jobDescription}" class="form-control" type="text"/>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        <button type="submit" value="Submit" class="btn btn-default">Save</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.modal add WorkAssignment data -->
+                    <!-- modal edit WorkAssignment data -->
+                    <div class="modal fade" id="mdlEditWorkAssignment" tabindex="-1" role="dialog" aria-labelledby="modal-add" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modal-add">Edit Work Assignment</h5>
+                                    <button class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <form th:action="@{/worksave}" method="post">
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <input id="getIdWork" th:field="*{worksave.id}" class="form-control" type="hidden"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="getStartWork">Start Date :</label>
+                                            <input id="getStartWork" th:field="*{worksave.startDate}" class="form-control" type="date"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="getEndWork">End Date :</label>
+                                            <input id="getEndWork" th:field="*{worksave.endDate}" class="form-control" type="date"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="getPositionWork">Position :</label>
+                                            <input id="getPositionWork" th:field="*{worksave.position}" class="form-control" type="text"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="getCompany">Company :</label>
+                                            <input id="getCompany" th:field="*{worksave.company}" class="form-control" type="text"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="getJobDescription">Job Description :</label>
+                                            <input id="getJobDescription" th:field="*{worksave.jobDescription}" class="form-control" type="text"/>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        <button type="submit" value="Submit" class="btn btn-default">Save</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.modal edit WorkAssignment data -->
+
+                    <!-- Achievement Content -->
+                    <h4><font color="#3973ac">Achievement</font></h4>
+                    <div class="col-sm-6">
+                        <button data-target="#mdlAddAchievement" data-toggle="modal" th:data-id="${maxidAchievement}" class="btn btn-warning btnAddAchievement"><i class="fa fa-plus"></i></button>
+                    </div>
+                    <table id="exampleAchievement" class="table-striped" style="width: 100%">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Id</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="tblDataAchievement">
+                            <tr th:each="as,i : ${dataAchievement}">
+                                <td th:text="${i.count}"></td>
+                                <td style="font-weight:bold" th:text="${as.name}"> </td>
+                                <td th:text="${as.description}"></td>
+                                <td th:text="${as.id}"></td>
+                                <td>  
+                                    <button data-target="#mdlEditAchievement" data-toggle="modal" class="btn btn-success btn-sm btnEditAchievement"><i class="fa fa-edit"></i> Edit</button>
+                                    <button class="btn btn-danger btn-sm btnDeleteAchievement" th:data-id="${as.id}"><i class="fa fa-trash"></i>Delete</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br>
+                    <br>
+                    <br>
+                    <!-- /.Achievement End Content -->
+                    <!-- modal add achievement data -->
+                    <div class="modal fade" id="mdlAddAchievement" tabindex="-1" role="dialog" aria-labelledby="modal-add" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modal-add">Add Achievement</h5>
+                                    <button class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <form th:action="@{/achievementsave}" method="post" >
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <input id="idachievement" th:field="*{achievementsave.id}" class="form-control" type="hidden"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="nameachievement">Name :</label>
+                                            <input id="nameachievement" th:field="*{achievementsave.name}" class="form-control" type="text"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="descriptionachievement">Description :</label>
+                                            <input id="descriptionachievement" th:field="*{achievementsave.description}" class="form-control" type="text"/>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        <button type="submit" value="Submit" class="btn btn-default">Save</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.modal add achievement data -->
+                    <!-- modal edit achievement data -->
+                    <div class="modal fade" id="mdlEditAchievement" tabindex="-1" role="dialog" aria-labelledby="modal-add" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modal-add">Edit Achievement</h5>
+                                    <button class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <form th:action="@{/achievementsave}" method="post" >
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <input id="getIdAchievement" th:field="*{achievementsave.id}" class="form-control" type="hidden"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="getNameAchievement">Name :</label>
+                                            <input id="getNameAchievement" th:field="*{achievementsave.name}" class="form-control" type="text"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="getDescriptionAchievement">Description :</label>
+                                            <input id="getDescriptionAchievement" th:field="*{achievementsave.description}" class="form-control" type="text"/>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        <button type="submit" value="Submit" class="btn btn-default">Save</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.modal edit achievement data -->
+                    <!-- Certification Content -->
+                    <h4><font color="#3973ac">Certification</font></h4>
+                    <div class="row" style="padding: 10px 0 10px 0">
+                        <div class="col-sm-6">
+                            <button data-target="#mdlAddCertification" data-toggle="modal" th:data-id="${maxidCertification}" class="btn btn-warning btnAddCertification"><i class="fa fa-plus"></i></button>
+                        </div>
+                    </div>
+                    <table id="exampleCertification" class="table-striped" style="width: 100%">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Name</th>
+                                <th>Expired Date</th>
+                                <th>Description</th>
+                                <th>Id</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="tblDataCertification">
+                            <tr th:each="as,i : ${dataCertification}"  >
+                                <td th:text="${i.count}"></td>
+                                <td th:text="${as.name}"> </td>
+                                <td th:text="${#dates.format(as.expiredDate,'dd-MMM-YYYY')}"> </td>
+                                <td th:text="${as.description}"></td>
+                                <td th:text="${as.id}"></td>
+                                <td> 
+                                    <button data-target="#mdlEditCertification" data-toggle="modal" class="btn btn-success btn-sm btnEditCertification"><i class="fa fa-edit"></i> Edit</button>
+                                    <button class="btn btn-danger btn-sm btnDeleteCertification" th:data-id="${as.id}"><i class="fa fa-trash"></i>Delete</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br>
+                    <br>
+                    <br>
+                    <!-- /.Certification End Content -->
+                    <!-- modal add certification data -->
+                    <div class="modal fade" id="mdlAddCertification" tabindex="-1" role="dialog" aria-labelledby="modal-add" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modal-add">Add Certification</h5>
+                                    <button class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <form th:action="@{/certificationsave}" method="post" >
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <input id="idcertification" th:field="*{certificationsave.id}" class="form-control" type="hidden"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="namecertification">Name :</label>
+                                            <input id="namecertification" th:field="*{certificationsave.name}" class="form-control" type="text"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="expiredDate">Expired Date :</label>
+                                            <input id="expiredDate" th:field="*{certificationsave.expiredDate}" class="form-control" type="date"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="descriptioncertification">Description :</label>
+                                            <input id="descriptioncertification" th:field="*{certificationsave.description}" class="form-control" type="text"/>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        <button type="submit" value="Submit" class="btn btn-default">Save</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.modal add certification data -->
+                    <!-- modal edit certification data -->
+                    <div class="modal fade" id="mdlEditCertification" tabindex="-1" role="dialog" aria-labelledby="modal-add" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modal-add">Edit certification</h5>
+                                    <button class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <form th:action="@{/certificationsave}" method="post" >
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <input id="getIdCertification" th:field="*{certificationsave.id}" class="form-control" type="text"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="getNameCertification">Name :</label>
+                                            <input id="getNameCertification" th:field="*{certificationsave.name}" class="form-control" type="text"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="getExpiredDate">Expired Date :</label>
+                                            <input id="getExpiredDate" th:field="*{certificationsave.expiredDate}" class="form-control" type="date"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="getDescriptionCertification">Description :</label>
+                                            <input id="getDescriptionCertification" th:field="*{certificationsave.description}" class="form-control" type="text"/>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        <button type="submit" value="Submit" class="btn btn-default">Save</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.modal edit certification data -->
+
+
+                    <!-- Experience Content -->
+                    <h4><font color="#3973ac">Experience</font></h4>
+                    <div class="row" style="padding: 10px 0 10px 0">
+                        <div class="col-sm-6">
+                            <button data-target="#mdlAddExperience" data-toggle="modal" th:data-id="${maxidExperience}" class="btn btn-warning btnAddExperience"><i class="fa fa-plus"></i></button>
+                        </div>
+                    </div>
+                    <table id="exampleExperience" class="table-striped" style="width: 100%">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Id</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="tblDataExperience">
+                            <tr th:each="as,i : ${dataExperience}"  >
+                                <td th:text="${i.count}"></td>
+                                <td th:text="${as.name}"> </td>
+                                <td th:text="${as.description}"></td>
+                                <td th:text="${as.id}"></td>
+                                <td> 
+                                    <button data-target="#mdlEditExperience" data-toggle="modal" class="btn btn-success btn-sm btnEditExperience"><i class="fa fa-edit"></i> Edit</button>
+                                    <button class="btn btn-danger btn-sm btnDeleteExperience" th:data-id="${as.id}"><i class="fa fa-trash"></i>Delete</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br>
+                    <br>
+                    <br>
+                    <!-- /.Experience End Content -->
+                    <!-- modal add experience data -->
+                    <div class="modal fade" id="mdlAddExperience" tabindex="-1" role="dialog" aria-labelledby="modal-add" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modal-add">Add Experience</h5>
+                                    <button class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <form th:action="@{/experiencesave}" method="post" >
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <input id="idexperience" th:field="*{experiencesave.id}" class="form-control" type="hidden"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="nameexperience">Name :</label>
+                                            <input id="nameexperience" th:field="*{experiencesave.name}" class="form-control" type="text"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="descriptionexperience">Description :</label>
+                                            <input id="descriptionexperience" th:field="*{experiencesave.description}" class="form-control" type="text"/>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        <button type="submit" value="Submit" class="btn btn-default">Save</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.modal add experience data -->
+                    <!-- modal edit experience data -->
+                    <div class="modal fade" id="mdlEditExperience" tabindex="-1" role="dialog" aria-labelledby="modal-add" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modal-add">Edit Experience</h5>
+                                    <button class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <form th:action="@{/experiencesave}" method="post" >
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <input id="getIdExperience" th:field="*{experiencesave.id}" class="form-control" type="hidden"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="getNameExperience">Name :</label>
+                                            <input id="getNameExperience" th:field="*{experiencesave.name}" class="form-control" type="text"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="getDescriptionExperience">Description :</label>
+                                            <input id="getDescriptionExperience" th:field="*{experiencesave.description}" class="form-control" type="text"/>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        <button type="submit" value="Submit" class="btn btn-default">Save</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.modal edit experience data -->
+
+                    <!-- Organization Content -->
+                    <h4><font color="#3973ac">Organization</font></h4>
+                    <div class="row" style="padding: 10px 0 10px 0">
+                        <div class="col-sm-6">
+                            <button data-target="#mdlAddOrganization" data-toggle="modal" th:data-id="${maxidOrganization}" class="btn btn-warning btnAddOrganization"><i class="fa fa-plus"></i></button>
+                        </div>
+                    </div>
+                    <table id="exampleOrganization" class="table-striped" style="width: 100%">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Name</th>
+                                <th>Position</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                <th>Id</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="tblDataOrganization">
+                            <tr th:each="as,i : ${dataOrganization}"  >
+                                <td th:text="${i.count}"></td>
+                                <td th:text="${as.name}"></td>
+                                <td th:text="${as.position}"></td>
+                                <td th:text="${#dates.format(as.startDate,'dd-MMM-YYYY')}"> </td>
+                                <td th:text="${#dates.format(as.endDate,'dd-MMM-YYYY')}"> </td>
+                                <td th:text="${as.id}"></td>
+                                <td> 
+                                    <button data-target="#mdlEditOrganization" data-toggle="modal" class="btn btn-success btn-sm btnEditOrganization"><i class="fa fa-edit"></i> Edit</button>
+                                    <button class="btn btn-danger btn-sm btnDeleteOrganization" th:data-id="${as.id}"><i class="fa fa-trash"></i>Delete</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br>
+                    <br>
+                    <br>
+                    <!-- /.Organization End Content -->
+                    <!-- modal add organization data -->
+                    <div class="modal fade" id="mdlAddOrganization" tabindex="-1" role="dialog" aria-labelledby="modal-add" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modal-add">Add Organization</h5>
+                                    <button class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <form th:action="@{/organizationsave}" method="post" >
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <input id="idorganization" th:field="*{organizationsave.id}" class="form-control" type="hidden"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="nameorganization">Name :</label>
+                                            <input id="nameorganization" th:field="*{organizationsave.name}" class="form-control" type="text"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="positionorganization">Position :</label>
+                                            <input id="positionorganization" th:field="*{organizationsave.position}" class="form-control" type="text"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="startDateOrganization">Start Date :</label>
+                                            <input id="startDateOrganization" th:field="*{organizationsave.startDate}" class="form-control" type="date"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="endDateOrganization">End Date :</label>
+                                            <input id="endDateOrganization" th:field="*{organizationsave.endDate}" class="form-control" type="date"/>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        <button type="submit" value="Submit" class="btn btn-default">Save</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.modal add organization data -->
+                    <!-- modal edit organization data -->
+                    <div class="modal fade" id="mdlEditOrganization" tabindex="-1" role="dialog" aria-labelledby="modal-add" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modal-add">Edit Organization</h5>
+                                    <button class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <form th:action="@{/organizationsave}" method="post" >
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <input id="getIdOrganization" th:field="*{organizationsave.id}" class="form-control" type="hidden"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="getNameOrganization">Name :</label>
+                                            <input id="getNameOrganization" th:field="*{organizationsave.name}" class="form-control" type="text"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="getPositionOrganization">Position :</label>
+                                            <input id="getPositionOrganization" th:field="*{organizationsave.position}" class="form-control" type="text"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="getStartDateOrganization">Start Date :</label>
+                                            <input id="getStartDateOrganization" th:field="*{organizationsave.startDate}" class="form-control" type="date"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="getEndDateOrganization">End Date :</label>
+                                            <input id="getEndDateOrganization" th:field="*{organizationsave.endDate}" class="form-control" type="date"/>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        <button type="submit" value="Submit" class="btn btn-default">Save</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.modal edit organization data -->
+
+                    <!-- Training Content -->
+                    <h4><font color="#3973ac">Training</font></h4>
+                    <div class="row" style="padding: 10px 0 10px 0">
+                        <div class="col-sm-6">
+                            <button data-target="#mdlAddTraining" data-toggle="modal" th:data-id="${maxidTraining}" class="btn btn-warning btnAddTraining"><i class="fa fa-plus"></i></button>
+                        </div>
+                    </div>
+                    <table id="exampleTraining" class="table-striped" style="width: 100%">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Certificate</th>
+                                <th>Id</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="tblDataTraining">
+                            <tr th:each="as,i : ${dataTraining}"  >
+                                <td th:text="${i.count}"></td>
+                                <td th:text="${as.name}"> </td>
+                                <td th:text="${as.description}"></td>
+                                <td th:text="${as.certificate}"></td>
+                                <td th:text="${as.id}"></td>
+                                <td> 
+                                    <button data-target="#mdlEditTraining" data-toggle="modal" class="btn btn-success btn-sm btnEditTraining"><i class="fa fa-edit"></i> Edit</button>
+                                    <button class="btn btn-danger btn-sm btnDeleteTraining" th:data-id="${as.id}"><i class="fa fa-trash"></i>Delete</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br>
+                    <br>
+                    <br>
+                    <!-- /.Training End Content -->
+                    <!-- modal add training data -->
+                    <div class="modal fade" id="mdlAddTraining" tabindex="-1" role="dialog" aria-labelledby="modal-add" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modal-add">Add Training</h5>
+                                    <button class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <form th:action="@{/trainingsave}" method="post" >
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <input id="idtraining" th:field="*{trainingsave.id}" class="form-control" type="hidden"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="nametraining">Name :</label>
+                                            <input id="nametraining" th:field="*{trainingsave.name}" class="form-control" type="text"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="descriptiontraining">Description :</label>
+                                            <input id="descriptiontraining" th:field="*{trainingsave.description}" class="form-control" type="text"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="certificate">Certficate :</label>
+                                            <select id="certificate" class="form-control" name="certificate" th:field="*{trainingsave.certificate}">
+                                                <option class="form-control"
+                                                        th:each=" crt:${dataChoose}"
+                                                        th:value="${crt}"
+                                                        th:text="${crt}">
+                                                </option>
+                                            </select>   
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        <button type="submit" value="Submit" class="btn btn-default">Save</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.modal add training data -->
+                    <!-- modal edit training data -->
+                    <div class="modal fade" id="mdlEditTraining" tabindex="-1" role="dialog" aria-labelledby="modal-add" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modal-add">Edit Training</h5>
+                                    <button class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <form th:action="@{/trainingsave}" method="post" >
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <input id="getIdTraining" th:field="*{trainingsave.id}" class="form-control" type="hidden"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="getNameTraining">Name :</label>
+                                            <input id="getNameTraining" th:field="*{trainingsave.name}" class="form-control" type="text"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="getDescriptionTraining">Description :</label>
+                                            <input id="getDescriptionTraining" th:field="*{trainingsave.description}" class="form-control" type="text"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="getCertificate">Certficate :</label>
+                                            <select id="getCertificate" class="form-control" name="certificate" th:field="*{trainingsave.certificate}">
+                                                <option class="form-control"
+                                                        th:each=" crt:${dataChoose}"
+                                                        th:value="${crt}"
+                                                        th:text="${crt}">
+                                                </option>
+                                            </select>   
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        <button type="submit" value="Submit" class="btn btn-default">Save</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.modal edit training data -->
+
+                </main>
+            </div>
+        </div>
+
+        <!-- Bootstrap core JavaScript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <!--jQuery-->
+        <script th:src="@{/dist/js/jquery-3.3.1.js}"></script>
+        <!--DataTables-->
+        <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+        <!--Popper-->
+        <script th:src="@{/dist/js/popper.min.js}"></script>
+        <!--Bootstrap-->
+        <script th:src="@{/dist/js/bootstrap.min.js}"></script>
+        <!--Sweetalert-->
+        <script th:src="@{/plugins/sweetalert/sweetalert.min.js}"></script>
+        <!--<script th:src="@{/dist/js/script.js}"></script>-->
+        <script th:src="@{/dist/js/profilEmployee.js}"></script>
+        <!-- Icons -->
+        <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+        <script>
+            feather.replace();
+        </script>
+
+        <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+    </body>
+</html>

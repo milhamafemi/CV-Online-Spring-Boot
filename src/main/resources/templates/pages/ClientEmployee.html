@@ -1,0 +1,134 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+        <meta name="description" content=""/>
+        <meta name="author" content=""/>
+        <link rel="icon" th:href="@{/dist/img/favicons/favicon.ico}"/>
+
+        <title>Dashboard Template for Bootstrap</title>
+
+        <!-- Bootstrap core CSS -->
+        <link th:href="@{/dist/css/bootstrap.min.css}" rel="stylesheet"/>
+        <!--Font Awesome-->
+        <link th:href="@{/dist/font-awesome/css/font-awesome.min.css}" rel="stylesheet"/>
+        <!--Datatables-->
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css"/>
+
+        <!-- Custom styles for this template -->
+        <link th:href="@{/dist/css/dashboard.css}" rel="stylesheet"/>
+        <link th:href="@{/plugins/sweetalert/sweetalert.css}" rel="stylesheet"/>
+    </head>
+
+    <body>
+        <div th:include="fragments/navigation::nav">
+
+
+        </div>
+
+        <div class="container-fluid">
+            <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+                <div class="sidebar-sticky">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link " href="/clienthome">
+                                <span data-feather="clienthome"></span>
+                                Dashboard <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="/assessment">
+                                <span data-feather="assessment"></span>
+                                Assessment <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="/clientprofilemployee">
+                                    <span data-feather="rmproject"></span>
+                                    Employee on Project <span class="sr-only">(current)</span>
+                                </a>
+                            </li>
+                    </ul>
+
+
+                </div>
+            </nav>
+
+            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Project</h1>
+                </div>
+
+                <!-- Content -->
+                <h4>Data Project</h4>
+                <div class="row" style="padding: 10px 0 10px 0">
+
+                </div>
+                <table id="example" class="table-bordered" style="width: 100%">
+                    <thead>
+                        <tr>
+                            <th><center>No</center></th>
+                    <th><center>Project Name</center></th>
+                    <th><center>Employee Name</center></th>
+                    <th><center>Start Date Employee</center></th>
+                    <th><center>End Date Employee</center></th>
+                    <th><center>Job Description Employee</center></th>
+                    <th></th>
+                    </tr>
+                    </thead>
+                    <tbody id="tblData">
+                        <tr th:each="pe,i : ${dataProjectEmp}" >
+                            <td th:text="${i.count}"></td>
+                            <td th:text="${pe.project.name}"></td>
+                            <td style="font-weight:bold" th:text="${pe.employee.userMii.name}"></td>
+                            <td th:text="${#dates.format(pe.startDate,'dd-MMM-YYYY')}"></td>
+                            <td th:text="${#dates.format(pe.endDate,'dd-MMM-YYYY')}"></td>
+                            <td th:text="${pe.jobDescription}"></td>
+                            <td> <button class="btn btn-success btn-sm btnProfilEmployee" th:data-id="${pe.employee.userMii.id}" >Profil Employee<i class="fa fa-book"></i> </button></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- /.End Content -->
+            </main>
+        </div>
+        <!-- Bootstrap core JavaScript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <!--jQuery-->
+        <script th:src="@{/dist/js/jquery-3.3.1.js}"></script>
+        <!--DataTables-->
+        <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+        <!--Popper-->
+        <script th:src="@{/dist/js/popper.min.js}"></script>
+        <!--Bootstrap-->
+        <script th:src="@{/dist/js/bootstrap.min.js}"></script>
+        <!--Sweetalert-->
+        <script th:src="@{/plugins/sweetalert/sweetalert.min.js}"></script>
+        <!--External Script-->
+        <!--<script th:src="@{/dist/js/assessment.js}"></script>-->
+        <script th:inline="javascript" type="text/javascript">
+            $(function (isConfirm) {
+                var table = $('#example').DataTable();
+                $('#example tbody').on('click', '.btnProfilEmployee', function () {
+                    var btn = $(this), id = btn.data('id');
+                    console.log(id);
+                    window.location = "clientprojectprofilemployee/" + id;
+                }
+                );
+            });
+
+
+        </script>
+        <!-- Icons -->
+        <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+        <script>
+            feather.replace();
+        </script>
+
+        <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+
+    </body>
+</html>

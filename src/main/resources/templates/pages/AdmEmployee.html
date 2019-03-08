@@ -1,0 +1,338 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+        <meta name="description" content=""/>
+        <meta name="author" content=""/>
+        <link rel="icon" th:href="@{/dist/img/favicons/favicon.ico}"/>
+
+        <title>Dashboard Template for Bootstrap</title>
+
+        <!-- Bootstrap core CSS -->
+        <link th:href="@{/dist/css/bootstrap.min.css}" rel="stylesheet"/>
+        <!--Font Awesome-->
+        <link th:href="@{/dist/font-awesome/css/font-awesome.min.css}" rel="stylesheet"/>
+        <!--Datatables-->
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css"/>
+
+        <!-- Custom styles for this template -->
+        <link th:href="@{/dist/css/dashboard.css}" rel="stylesheet"/>
+        <link th:href="@{/plugins/sweetalert/sweetalert.css}" rel="stylesheet"/>
+    </head>
+
+    <body>
+        <div th:include="fragments/navigation::nav">
+
+
+        </div>
+
+        <div class="container-fluid">
+            <div class="row">
+                <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+                    <div class="sidebar-sticky">
+                        <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link " href="/admhome">
+                                <span data-feather="admhome"></span>
+                                Dashboard <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="/employee">
+                                <span data-feather="employee"></span>
+                                Employee <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="/project">
+                                <span data-feather="project"></span>
+                                Project <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="/client">
+                                <span data-feather="client"></span>
+                                Client <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        </ul>
+                    </div>
+                </nav>
+
+                <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                        <h1 class="h2">Employee</h1>
+                    </div>
+
+                    <!-- Content -->
+                    <h4>Data Employee</h4>
+                    <div class="row" style="padding: 10px 0 10px 0">
+                        <div class="col-sm-6">
+                            <button data-target="#mdlAdd" data-toggle="modal" class="btn btn-warning"><i class="fa fa-plus">Add Data</i></button>
+                        </div>
+                    </div>
+                    <table id="example" class="table-striped" style="width: 100%">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Id</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Gender</th>
+                                <th>Religion</th>
+                                <th>Marital Status</th>
+                                <th>Nationality</th>
+                                <th>Date of Birth</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                <th>Password</th>
+                                <th>Role</th>
+                                <th>Edit</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tblData">
+                            <tr th:each="as,i : ${dataEmployee}" th:if="${as.isDelete}=='NO'">
+                                <td th:text="${i.count}"></td>
+                                <td th:text="${as.id}"></td>
+                                <td th:text="${as.userMii.name}"> </td>
+                                <td th:text="${as.userMii.email}"></td>
+                                <td th:text="${as.phone}"></td>
+                                <td th:text="${as.gender}"></td>
+                                <td th:text="${as.religion}"></td>
+                                <td th:text="${as.maritalStatus}"></td>
+                                <td th:text="${as.nationality}"></td>
+                                <td th:text="${#dates.format(as.birthDate,'dd-MMM-YYYY')}"></td>
+                                <td th:text="${#dates.format(as.startDate,'dd-MMM-YYYY')}"></td>
+                                <td th:text="${#dates.format(as.endDate,'dd-MMM-YYYY')}"></td>
+                                <td th:text="${as.userMii.password}"> </td>
+                                <td th:text="${as.userMii.role.id}"></td>
+
+
+                                <td>  
+                                    <!--<button class="btn btn-success btn-sm btnDetail" th:data-id="${as.id}"><a th:href="${' /detailEmployee/' + as.id}"><i class="fa fa-book"></i>Detail</a></button>-->
+                                    <button data-target="#mdlEdit" data-toggle="modal" class="btn btn-success btn-sm btnEdit"><i class="fa fa-edit"></i> Edit</button>
+                                    <button class="btn btn-danger btn-sm btnDelete" th:data-id="${as.id}"><i class="fa fa-trash"></i>Delete</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!-- modal add data -->
+                    <div class="modal fade" id="mdlAdd" tabindex="-1" role="dialog" aria-labelledby="modal-add" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modal-add">Add Employee</h5>
+                                    <button class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <form th:action="@{/employeesave}" method="post" >
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <label for="idemployee">Id :</label>
+                                            <input id="idemployee" th:field="*{usersave.id}" class="form-control" type="text"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <input id="passwordemployee" th:field="*{usersave.password}" class="form-control" type="hidden"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="nameemployee">Name :</label>
+                                            <input id="nameemployee" th:field="*{usersave.name}" class="form-control" type="text"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="emailemployee">Email :</label>
+                                            <input id="emailemployee" th:field="*{usersave.email}"class="form-control" type="text"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="phone">Phone :</label>
+                                            <input id="phone" th:field="*{employeesave.phone}" class="form-control" type="text"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="getGender">Gender :</label>
+                                            <select id="getGender" class="form-control" name="gender" th:field="*{employeesave.gender}">
+                                                <option class="form-control"
+                                                        th:each=" gd:${dataGender}"
+                                                        th:value="${gd}"
+                                                        th:text="${gd}">
+                                                </option>
+                                            </select>   
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="getReligion">Religion :</label>
+                                            <select id="getReligion" class="form-control" name="religion" th:field="*{employeesave.religion}">
+                                                <option class="form-control"
+                                                        th:each=" rlg:${dataReligion}"
+                                                        th:value="${rlg}"
+                                                        th:text="${rlg}">
+                                                </option>
+                                            </select>   
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="getMarital">Marital Status:</label>
+                                            <select id="getMarital" class="form-control" name="marital" th:field="*{employeesave.maritalStatus}">
+                                                <option class="form-control"
+                                                        th:each=" mrl:${dataMarital}"
+                                                        th:value="${mrl}"
+                                                        th:text="${mrl}">
+                                                </option>
+                                            </select>   
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="nationality">Nationality :</label>
+                                            <input id="nationality" th:field="*{employeesave.nationality}" class="form-control" type="text"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="birth">Date of Birth :</label>
+                                            <input id="birth" th:field="*{employeesave.birthDate}" class="form-control" type="date"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="start">Start Date :</label>
+                                            <input id="start" th:field="*{employeesave.startDate}" class="form-control" type="date"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="end">End Date :</label>
+                                            <input id="end" th:field="*{employeesave.endDate}" class="form-control" type="date"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="rl">Role :</label>
+                                            <select th:field="*{usersave.role.id}">
+                                                <option class="form-control"
+                                                        th:each=" rl:${findrole}" 
+                                                        th:if="${rl.id}=='2' OR ${rl.id}=='3'"
+                                                        th:value="${rl.id}"
+                                                        th:text="${rl.name}">
+                                                </option>
+                                            </select>   
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        <button type="submit" value="Submit" class="btn btn-default" >Save</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.modal add data -->
+                    <!-- modal edit data -->
+                    <div class="modal fade" id="mdlEdit" tabindex="-1" role="dialog" aria-labelledby="modal-add" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modal-add">Edit Employee</h5>
+                                    <button class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <form th:action="@{/employeeedit}" method="post" >
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <input id="getIdEmployee" th:field="*{usersave.id}" class="form-control" type="hidden"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <input id="getPasswordEmployee" th:field="*{usersave.password}" class="form-control" type="hidden"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="getNameEmployee">Name :</label>
+                                            <input id="getNameEmployee" th:field="*{usersave.name}" class="form-control" type="text"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="getEmailEmployee">Email :</label>
+                                            <input id="getEmailEmployee" th:field="*{usersave.email}"class="form-control" type="text"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="getPhone">Phone :</label>
+                                            <input id="getPhone" th:field="*{employeesave.phone}" class="form-control" type="text"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="getGender">Gender :</label>
+                                            <select id="getGender" class="form-control" name="gender" th:field="*{employeesave.gender}">
+                                                <option class="form-control"
+                                                        th:each=" gd:${dataGender}"
+                                                        th:value="${gd}"
+                                                        th:text="${gd}">
+                                                </option>
+                                            </select>   
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="getReligion">Religion :</label>
+                                            <select id="getReligion" class="form-control" name="religion" th:field="*{employeesave.religion}">
+                                                <option class="form-control"
+                                                        th:each=" rlg:${dataReligion}"
+                                                        th:value="${rlg}"
+                                                        th:text="${rlg}">
+                                                </option>
+                                            </select>   
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="getMarital">Marital Status:</label>
+                                            <select id="getMarital" class="form-control" name="marital" th:field="*{employeesave.maritalStatus}">
+                                                <option class="form-control"
+                                                        th:each=" mrl:${dataMarital}"
+                                                        th:value="${mrl}"
+                                                        th:text="${mrl}">
+                                                </option>
+                                            </select>   
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="getNationality">Nationality :</label>
+                                            <input id="getNationality" th:field="*{employeesave.nationality}" class="form-control" type="text"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="getBirth">Date of Birth :</label>
+                                            <input id="getBirth" th:field="*{employeesave.birthDate}" class="form-control" type="date"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="getStart">Start Date :</label>
+                                            <input id="getStart" th:field="*{employeesave.startDate}" class="form-control" type="date"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="getEnd">End Date :</label>
+                                            <input id="getEnd" th:field="*{employeesave.endDate}" class="form-control" type="date"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <input id="getRole" th:field="*{usersave.role}" class="form-control" type="hidden"/>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        <button type="submit" value="Submit" class="btn btn-default">Save</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.modal edit data -->
+                    <!-- /.End Content -->
+                </main>
+            </div>
+        </div>
+
+        <!-- Bootstrap core JavaScript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <!--jQuery-->
+        <script th:src="@{/dist/js/jquery-3.3.1.js}"></script>
+        <!--DataTables-->
+        <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+        <!--Popper-->
+        <script th:src="@{/dist/js/popper.min.js}"></script>
+        <!--Bootstrap-->
+        <script th:src="@{/dist/js/bootstrap.min.js}"></script>
+        <!--Sweetalert-->
+        <script th:src="@{/plugins/sweetalert/sweetalert.min.js}"></script>
+        <!--<script th:src="@{/dist/js/script.js}"></script>-->
+        <script th:src="@{/dist/js/employee.js}"></script>
+        <!-- Icons -->
+        <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+        <script>
+            feather.replace();
+        </script>
+
+        <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+    </body>
+</html>

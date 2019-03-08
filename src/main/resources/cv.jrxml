@@ -1,0 +1,616 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isSummaryNewPage="true" isSummaryWithPageHeaderAndFooter="true" uuid="b42e404c-e4d8-46ba-8691-1f5c5fc22ef5">
+	<property name="ireport.zoom" value="1.4641000000000013"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="1086"/>
+	<subDataset name="languagedata" uuid="8538d32d-bad7-4504-9933-821a8f0b571c">
+		<field name="languagename" class="java.lang.String">
+			<fieldDescription><![CDATA[language.name]]></fieldDescription>
+		</field>
+	</subDataset>
+	<subDataset name="educationdata" uuid="9ff44dd5-4eb7-411c-89c7-71d89a0c9f4c">
+		<field name="university" class="java.lang.String">
+			<fieldDescription><![CDATA[majorUniversity.university.name]]></fieldDescription>
+		</field>
+		<field name="major" class="java.lang.String">
+			<fieldDescription><![CDATA[majorUniversity.major.name]]></fieldDescription>
+		</field>
+		<field name="gpa" class="java.lang.String">
+			<fieldDescription><![CDATA[ip]]></fieldDescription>
+		</field>
+		<field name="degree" class="java.lang.String">
+			<fieldDescription><![CDATA[majorUniversity.degree]]></fieldDescription>
+		</field>
+		<field name="start" class="java.sql.Timestamp">
+			<fieldDescription><![CDATA[startDate]]></fieldDescription>
+		</field>
+		<field name="end" class="java.sql.Timestamp">
+			<fieldDescription><![CDATA[endDate]]></fieldDescription>
+		</field>
+	</subDataset>
+	<subDataset name="qualificationdata" uuid="7b8efbd7-34ad-45f4-8fcc-73a02b622607">
+		<field name="qualification_name" class="java.lang.String">
+			<fieldDescription><![CDATA[qualification.name]]></fieldDescription>
+		</field>
+		<field name="specialization" class="java.lang.String">
+			<fieldDescription><![CDATA[qualification.specialization]]></fieldDescription>
+		</field>
+	</subDataset>
+	<subDataset name="workAssignmentData" uuid="44f2115f-15d3-44e0-a1e3-1a55152ab2a3">
+		<field name="startWork" class="java.sql.Timestamp">
+			<fieldDescription><![CDATA[startDate]]></fieldDescription>
+		</field>
+		<field name="endWork" class="java.sql.Timestamp">
+			<fieldDescription><![CDATA[endDate]]></fieldDescription>
+		</field>
+		<field name="position" class="java.lang.String">
+			<fieldDescription><![CDATA[position]]></fieldDescription>
+		</field>
+		<field name="company" class="java.lang.String">
+			<fieldDescription><![CDATA[company]]></fieldDescription>
+		</field>
+		<field name="job_description" class="java.lang.String">
+			<fieldDescription><![CDATA[jobDescription]]></fieldDescription>
+		</field>
+	</subDataset>
+	<subDataset name="organizationData" uuid="40650ed9-ca70-4d22-aeec-03e73d6bf692">
+		<field name="startOrganization" class="java.sql.Timestamp">
+			<fieldDescription><![CDATA[startDate]]></fieldDescription>
+		</field>
+		<field name="endOrganization" class="java.sql.Timestamp">
+			<fieldDescription><![CDATA[endDate]]></fieldDescription>
+		</field>
+		<field name="nameOrganization" class="java.lang.String">
+			<fieldDescription><![CDATA[name]]></fieldDescription>
+		</field>
+		<field name="positionOrganization" class="java.lang.String">
+			<fieldDescription><![CDATA[name]]></fieldDescription>
+		</field>
+	</subDataset>
+	<subDataset name="experienceData" uuid="e5a66b09-89d6-4ed5-9d0d-205bd9b818be">
+		<field name="experienceDescription" class="java.lang.String">
+			<fieldDescription><![CDATA[description]]></fieldDescription>
+		</field>
+	</subDataset>
+	<subDataset name="achievementData" uuid="f65e3b01-c4d4-45ca-999c-89e00b1433bb">
+		<field name="achievementDescription" class="java.lang.String">
+			<fieldDescription><![CDATA[description]]></fieldDescription>
+		</field>
+	</subDataset>
+	<subDataset name="projectData" uuid="cc6ef4b6-739c-4055-8139-db6cc960f7ed">
+		<field name="projectStart" class="java.sql.Timestamp">
+			<fieldDescription><![CDATA[startDate]]></fieldDescription>
+		</field>
+		<field name="projectEnd" class="java.sql.Timestamp">
+			<fieldDescription><![CDATA[endDate]]></fieldDescription>
+		</field>
+		<field name="projectName" class="java.lang.String">
+			<fieldDescription><![CDATA[project.name]]></fieldDescription>
+		</field>
+		<field name="projectSpecification" class="java.lang.String">
+			<fieldDescription><![CDATA[project.projectSpecification]]></fieldDescription>
+		</field>
+	</subDataset>
+	<subDataset name="certificationData" uuid="4cf0b441-2a26-4a89-97f3-f1c19ce305ea">
+		<field name="certificationName" class="java.lang.String">
+			<fieldDescription><![CDATA[name]]></fieldDescription>
+		</field>
+		<field name="certificationDescription" class="java.lang.String">
+			<fieldDescription><![CDATA[description]]></fieldDescription>
+		</field>
+		<field name="expiredDate" class="java.sql.Timestamp">
+			<fieldDescription><![CDATA[expiredDate]]></fieldDescription>
+		</field>
+	</subDataset>
+	<subDataset name="trainingData" uuid="d514fd8b-00ac-4b76-ab9a-76dc2ecb900c">
+		<field name="trainingName" class="java.lang.String">
+			<fieldDescription><![CDATA[name]]></fieldDescription>
+		</field>
+		<field name="trainingDescription" class="java.lang.String">
+			<fieldDescription><![CDATA[description]]></fieldDescription>
+		</field>
+	</subDataset>
+	<field name="birthDate" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[birthDate]]></fieldDescription>
+	</field>
+	<field name="usermiiname" class="java.lang.String">
+		<fieldDescription><![CDATA[userMii.name]]></fieldDescription>
+	</field>
+	<field name="nationality" class="java.lang.String">
+		<fieldDescription><![CDATA[nationality]]></fieldDescription>
+	</field>
+	<field name="marital" class="java.lang.String">
+		<fieldDescription><![CDATA[maritalStatus]]></fieldDescription>
+	</field>
+	<field name="gender" class="java.lang.String">
+		<fieldDescription><![CDATA[gender]]></fieldDescription>
+	</field>
+	<field name="religion" class="java.lang.String">
+		<fieldDescription><![CDATA[religion]]></fieldDescription>
+	</field>
+	<field name="languageEmployeeList" class="java.util.List">
+		<fieldDescription><![CDATA[languageEmployeeList]]></fieldDescription>
+	</field>
+	<field name="educationList" class="java.util.List">
+		<fieldDescription><![CDATA[educationList]]></fieldDescription>
+	</field>
+	<field name="workAssignmentList" class="java.util.List">
+		<fieldDescription><![CDATA[workAssignmentList]]></fieldDescription>
+	</field>
+	<field name="projectEmployeeList" class="java.util.List">
+		<fieldDescription><![CDATA[projectEmployeeList]]></fieldDescription>
+	</field>
+	<field name="certificationList" class="java.util.List">
+		<fieldDescription><![CDATA[certificationList]]></fieldDescription>
+	</field>
+	<field name="trainingList" class="java.util.List">
+		<fieldDescription><![CDATA[trainingList]]></fieldDescription>
+	</field>
+	<field name="organizationList" class="java.util.List">
+		<fieldDescription><![CDATA[organizationList]]></fieldDescription>
+	</field>
+	<field name="achievementList" class="java.util.List">
+		<fieldDescription><![CDATA[achievementList]]></fieldDescription>
+	</field>
+	<field name="qualificationEmployeeList" class="java.util.List">
+		<fieldDescription><![CDATA[qualificationEmployeeList]]></fieldDescription>
+	</field>
+	<field name="experienceList" class="java.util.List">
+		<fieldDescription><![CDATA[experienceList]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="62" splitType="Stretch">
+			<textField>
+				<reportElement x="4" y="14" width="192" height="38" uuid="442b676e-2d14-490a-a510-bec996008851"/>
+				<textElement>
+					<font size="24"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{usermiiname}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="686">
+			<staticText>
+				<reportElement x="6" y="260" width="100" height="20" uuid="3b31206c-c9ed-43f0-b6df-be9fa6af1a2e"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Phone:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6" y="9" width="100" height="20" forecolor="#365F91" uuid="2de08f22-0b64-413b-87ac-4664fb304bbe"/>
+				<textElement>
+					<font fontName="Cambria" size="16"/>
+				</textElement>
+				<text><![CDATA[Personal Data]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="180" width="100" height="20" uuid="5e307a6d-3d76-4cff-95ce-4cf73d729e6c"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Postal Address:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="220" y="280" width="112" height="20" uuid="6e44c243-ee4c-4c61-97e8-617fb199eef1"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<text><![CDATA[recruitment@mii.co.id]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="222" y="63" width="100" height="20" uuid="46c7bb9e-4940-4b11-abc5-7680131705de"/>
+				<textFieldExpression><![CDATA[$F{nationality}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="5" y="143" width="156" height="20" uuid="f0e39fcb-afd0-4386-b4dd-b7d5660e4952"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Foreign Language Proficiency:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="222" y="123" width="100" height="20" uuid="ccf56649-20ad-4607-bc69-0625d089b21f"/>
+				<textFieldExpression><![CDATA[$F{religion}]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement x="222" y="143" width="100" height="20" uuid="26280b9f-91d8-4b32-a01d-5bf2f75bfb78"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="languagedata" uuid="0944fd2f-ce39-4b73-bddf-9b284793a8b4">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{languageEmployeeList})]]></dataSourceExpression>
+					</datasetRun>
+					<jr:listContents height="20" width="100">
+						<textField>
+							<reportElement x="0" y="0" width="100" height="20" uuid="33c6288d-9893-4ad7-8d0a-eb0e45a1d06c"/>
+							<textElement textAlignment="Justified" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{languagename}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+			<staticText>
+				<reportElement x="6" y="280" width="100" height="20" uuid="f2fa40df-19cb-4a28-9c40-060930a52465"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Email:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="222" y="181" width="155" height="79" uuid="1c389298-6fcc-4ba5-9de7-c267b20d113e"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[PT Mitra Integrasi Informatika
+APL Tower 37th floor, Suite 1-8
+Jl. LetJen S. Parman Kav 28, Tanjung Duren Selatan
+Grogol Petamburan, Jakarta Barat, 11470
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6" y="103" width="100" height="20" uuid="8f4f7a26-8ded-473e-a17b-c30fa5d68444"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Gender:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="7" y="83" width="100" height="20" uuid="97251592-78da-4946-bd89-5f8cd3f51f97"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Marital Status:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="222" y="83" width="100" height="20" uuid="ed72eafb-da59-497a-a0af-c88ac216db92"/>
+				<textFieldExpression><![CDATA[$F{marital}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="6" y="123" width="100" height="20" uuid="1279ddd7-fdb0-4fc9-ab9a-7bf6e503ecd7"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Religion:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6" y="43" width="100" height="20" uuid="a5b31efa-cc47-4ac8-88e2-bc9d9371696c"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Date of Birth:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="222" y="103" width="100" height="20" uuid="19d6597e-ebc2-4de5-bda4-03d0437f89e3"/>
+				<textFieldExpression><![CDATA[$F{gender}]]></textFieldExpression>
+			</textField>
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="222" y="43" width="100" height="20" uuid="0aec2486-867d-4cfc-949a-833d92a07556"/>
+				<textFieldExpression><![CDATA[$F{birthDate}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="6" y="63" width="100" height="20" uuid="8044d97c-72a2-4e47-895a-86e17144ec09"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Nationality:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="220" y="260" width="100" height="20" uuid="3ab74504-2ba4-4d22-9a34-9ab0e61cdd2c"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<text><![CDATA[+62 21 29 345 777]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement x="7" y="334" width="349" height="57" uuid="3e2a0611-dad8-4036-b9f6-0a78bb506106"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="educationdata" uuid="a0bbbba4-73cc-49f1-a0e1-0424e2c10f12">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{educationList})]]></dataSourceExpression>
+					</datasetRun>
+					<jr:listContents height="57" width="349">
+						<textField>
+							<reportElement x="8" y="6" width="52" height="20" uuid="67fe6273-673b-4561-8088-920e6ee8ea9c"/>
+							<textFieldExpression><![CDATA[$F{degree}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="60" y="6" width="11" height="20" uuid="25fd9d96-ad63-4744-8730-3ffe588b48c0"/>
+							<textElement>
+								<font isBold="true"/>
+							</textElement>
+							<text><![CDATA[at]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="71" y="7" width="149" height="20" uuid="4033b81f-93e1-413c-833a-60dc49cfd635"/>
+							<textFieldExpression><![CDATA[$F{university}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="6" y="26" width="100" height="20" uuid="3a91a0b3-02a9-4595-9dae-419ddef6c280"/>
+							<text><![CDATA[GPA]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="194" y="6" width="100" height="20" uuid="2301e633-dc98-4124-93ba-17caddde016c"/>
+							<textElement>
+								<font isBold="false"/>
+							</textElement>
+							<text><![CDATA[Majoring in]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="61" y="26" width="100" height="20" uuid="109267a9-97dd-4469-993e-69b85a8e1181"/>
+							<text><![CDATA[Period]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="245" y="6" width="100" height="20" uuid="ad1cb0c8-3159-424d-af25-d88abab87f6e"/>
+							<textFieldExpression><![CDATA[$F{major}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="32" y="26" width="39" height="20" uuid="3017bb42-f9a7-46e5-ab21-90b084ed7a49"/>
+							<textFieldExpression><![CDATA[$F{gpa}]]></textFieldExpression>
+						</textField>
+						<textField pattern="yyyy)">
+							<reportElement x="124" y="26" width="100" height="20" uuid="8aedb213-953f-4ac6-a51f-e60bd9a4e64a"/>
+							<textFieldExpression><![CDATA[$F{end}]]></textFieldExpression>
+						</textField>
+						<textField pattern="(yyyy -">
+							<reportElement x="94" y="26" width="100" height="20" uuid="3fc4cec3-2f66-454b-a9fa-f7ffa99b03dd"/>
+							<textFieldExpression><![CDATA[$F{start}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+			<staticText>
+				<reportElement x="7" y="304" width="183" height="20" forecolor="#365F91" uuid="cb2dabb0-a62b-4511-aed4-427084037a5c"/>
+				<textElement>
+					<font fontName="Cambria" size="16"/>
+				</textElement>
+				<text><![CDATA[Educational Qualification]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="459" width="183" height="20" forecolor="#365F91" uuid="13ec2a5f-2951-43ad-965b-d824fb7216da"/>
+				<textElement>
+					<font fontName="Cambria" size="16"/>
+				</textElement>
+				<text><![CDATA[Technical Qualification]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement x="13" y="485" width="131" height="41" uuid="c0672a88-90c2-4ef2-97e9-5531540b9376"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="qualificationdata" uuid="73ecf941-ddbc-4263-bf35-1ce2db445449">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{qualificationEmployeeList})]]></dataSourceExpression>
+					</datasetRun>
+					<jr:listContents height="41" width="131">
+						<textField>
+							<reportElement x="5" y="7" width="80" height="13" uuid="8d1d42fb-c047-41de-b546-fde0797fd1e9"/>
+							<textFieldExpression><![CDATA[$F{specialization}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="50" y="24" width="76" height="14" uuid="702dd373-577a-47c5-9d0f-1be985ce62c4"/>
+							<textFieldExpression><![CDATA[$F{qualification_name}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+			<staticText>
+				<reportElement x="11" y="588" width="183" height="20" forecolor="#365F91" uuid="a6ec8e59-e6b7-406b-8d19-66d0b8a07afb"/>
+				<textElement>
+					<font fontName="Cambria" size="16"/>
+				</textElement>
+				<text><![CDATA[Work Assignment]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement x="8" y="620" width="326" height="63" uuid="f6154861-e08b-4ec8-b64a-0ba4138b8e80"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="workAssignmentData" uuid="2683c320-7856-43fa-b7f5-cda1c6e86e7e">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{workAssignmentList})]]></dataSourceExpression>
+					</datasetRun>
+					<jr:listContents height="63" width="326">
+						<staticText>
+							<reportElement x="200" y="9" width="100" height="20" uuid="abe47077-618d-48db-a0a2-ea8b1f90ae45"/>
+							<text><![CDATA[at]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="169" y="9" width="60" height="20" uuid="4905889b-3590-44a1-a002-25b94d347530"/>
+							<textFieldExpression><![CDATA[$F{position}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="215" y="9" width="100" height="20" uuid="7d0924ad-4d6b-4a9f-9e62-9a60a4870be7"/>
+							<textFieldExpression><![CDATA[$F{company}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="84" y="32" width="100" height="20" uuid="5c22b631-77b1-4e00-9750-831f598befbc"/>
+							<textFieldExpression><![CDATA[$F{job_description}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="10" y="32" width="100" height="20" uuid="29cf71ad-d0d0-4310-81ac-cfb2b131e58f"/>
+							<text><![CDATA[Job Description :]]></text>
+						</staticText>
+						<textField pattern="(MMMMM)(yyyy)-">
+							<reportElement x="10" y="9" width="100" height="20" uuid="200415df-212a-412d-ac7c-9d00dcf4c796"/>
+							<textFieldExpression><![CDATA[$F{startWork}]]></textFieldExpression>
+						</textField>
+						<textField pattern="(MMMMM)(yyyy)">
+							<reportElement x="90" y="9" width="100" height="20" uuid="93b67644-7469-4ec9-8b75-f5e3c2a8e445"/>
+							<textFieldExpression><![CDATA[$F{endWork}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<staticText>
+				<reportElement stretchType="RelativeToBandHeight" x="61" y="11" width="374" height="25" uuid="8fe2b6be-132b-49db-8dba-bf737bd44883"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font fontName="Book Antiqua" size="10"/>
+				</textElement>
+				<text><![CDATA[			PT Mitra Integrasi Informatika
+APL Tower 37th Floor Suite 1-8, Jl. Letjen S. Parman Kav.28, Jakarta Barat, 11470
+]]></text>
+			</staticText>
+			<break>
+				<reportElement x="0" y="47" width="100" height="1" uuid="7dba58e5-8c8a-48fa-a5f1-12bbd985c60c"/>
+			</break>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="802" splitType="Stretch">
+			<staticText>
+				<reportElement x="7" y="95" width="183" height="20" forecolor="#365F91" uuid="9c04d8bd-bdcf-4e25-9277-d8835bb2838c"/>
+				<textElement>
+					<font fontName="Cambria" size="16"/>
+				</textElement>
+				<text><![CDATA[Experiences]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="14" y="206" width="183" height="20" forecolor="#365F91" uuid="d801ee41-b10d-4e2f-8e3f-7029974c3196"/>
+				<textElement>
+					<font fontName="Cambria" size="16"/>
+				</textElement>
+				<text><![CDATA[Achievement]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="311" width="183" height="20" forecolor="#365F91" uuid="fc2c70ba-2d17-4d7b-aeb9-715c119c87e3"/>
+				<textElement>
+					<font fontName="Cambria" size="16"/>
+				</textElement>
+				<text><![CDATA[Project]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement x="9" y="122" width="162" height="32" uuid="53efb8b9-72a2-448d-be13-9464b79163c4"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="experienceData" uuid="95aa59cc-e736-4dfd-adf0-2123780a3469">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{experienceList})]]></dataSourceExpression>
+					</datasetRun>
+					<jr:listContents height="32" width="162">
+						<textField>
+							<reportElement x="7" y="8" width="155" height="17" uuid="ca0fb562-7545-441a-ba9d-7c79f70f7984"/>
+							<textFieldExpression><![CDATA[$F{experienceDescription}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+			<componentElement>
+				<reportElement x="14" y="230" width="431" height="33" uuid="a1d9d990-6388-4f17-8a9b-9b4838d50f0d"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="achievementData" uuid="a7cf1209-ee6a-46c9-a4bc-9bcd5253d04e">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{achievementList})]]></dataSourceExpression>
+					</datasetRun>
+					<jr:listContents height="33" width="431">
+						<textField>
+							<reportElement x="7" y="7" width="408" height="18" uuid="6e631bc1-81d4-42ee-b3d1-ffc985bcac96"/>
+							<textFieldExpression><![CDATA[$F{achievementDescription}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+			<componentElement>
+				<reportElement x="12" y="341" width="330" height="43" uuid="7f916f58-6d3a-444d-b555-5c8c98f5d999"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="projectData" uuid="f8204ba8-936a-4221-979e-d002edcb964c">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{projectEmployeeList})]]></dataSourceExpression>
+					</datasetRun>
+					<jr:listContents height="43" width="330">
+						<textField>
+							<reportElement x="13" y="13" width="100" height="20" uuid="c991747d-55d9-44c7-afac-575cb639f9c4"/>
+							<textFieldExpression><![CDATA[$F{projectStart}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="116" y="14" width="100" height="20" uuid="6f6e62cb-36d1-4285-a105-d9101f096221"/>
+							<textFieldExpression><![CDATA[$F{projectEnd}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="219" y="15" width="100" height="20" uuid="edfdf4c7-9be7-464a-82c9-9b22582973f7"/>
+							<textFieldExpression><![CDATA[$F{projectName}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+			<staticText>
+				<reportElement x="4" y="0" width="183" height="20" forecolor="#365F91" uuid="d36e528c-793b-4ec3-a19c-a0e2c1bca8ca"/>
+				<textElement>
+					<font fontName="Cambria" size="16"/>
+				</textElement>
+				<text><![CDATA[Organization]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement x="2" y="30" width="242" height="43" uuid="73c946ef-523d-4dd4-af85-e7d6738b53c1"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="organizationData" uuid="0aa67a28-616b-4e1a-9544-a149e76e2b07">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{organizationList})]]></dataSourceExpression>
+					</datasetRun>
+					<jr:listContents height="43" width="242">
+						<textField>
+							<reportElement x="11" y="10" width="100" height="20" uuid="43e78d6d-2d47-41b7-b50d-773e0f777f63"/>
+							<textFieldExpression><![CDATA[$F{nameOrganization}]]></textFieldExpression>
+						</textField>
+						<textField pattern="(MMMMM yyyy-">
+							<reportElement x="48" y="10" width="100" height="20" uuid="00d18bca-e611-45f4-8ea7-6bf3b16f138e"/>
+							<textFieldExpression><![CDATA[$F{startOrganization}]]></textFieldExpression>
+						</textField>
+						<textField pattern="MMMMM yyyy)">
+							<reportElement x="126" y="11" width="100" height="20" uuid="b91438f8-2c8d-4e84-bbaf-c55ca31b3d98"/>
+							<textFieldExpression><![CDATA[$F{endOrganization}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+			<staticText>
+				<reportElement x="12" y="442" width="183" height="20" forecolor="#365F91" uuid="04663ce0-8179-4cdb-a4df-dbb1bad6449e"/>
+				<textElement>
+					<font fontName="Cambria" size="16"/>
+				</textElement>
+				<text><![CDATA[Certification]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="16" y="557" width="183" height="20" forecolor="#365F91" uuid="89fc6f6d-2f9b-436e-ad48-a4567ba4fa93"/>
+				<textElement>
+					<font fontName="Cambria" size="16"/>
+				</textElement>
+				<text><![CDATA[Training]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement x="14" y="469" width="415" height="33" uuid="edbe1a4e-3401-4e87-ac52-0008ce6f7fb0"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="certificationData" uuid="24155bf6-a176-4d0c-b401-dca96b1e6241">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{certificationList})]]></dataSourceExpression>
+					</datasetRun>
+					<jr:listContents height="33" width="415">
+						<textField>
+							<reportElement x="14" y="8" width="100" height="20" uuid="1c259038-3d57-4b2c-bd02-1c2d8b4a7c2b"/>
+							<textFieldExpression><![CDATA[$F{certificationName}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="117" y="8" width="100" height="20" uuid="d5702bc2-2232-49f2-b181-fbaf029decc8"/>
+							<textFieldExpression><![CDATA[$F{certificationDescription}]]></textFieldExpression>
+						</textField>
+						<textField pattern="(dd MMMMM yyyy)">
+							<reportElement x="220" y="11" width="100" height="20" uuid="96bcc2d8-7e59-49e1-8f29-70c5aa5b23ad"/>
+							<textFieldExpression><![CDATA[$F{expiredDate}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+			<componentElement>
+				<reportElement x="16" y="592" width="413" height="42" uuid="deec4f69-03e3-49fb-b89a-6a177f0afd33"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="trainingData" uuid="a24dcd62-be49-4a9c-a9ef-d02cbe7d1f30">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{trainingList})]]></dataSourceExpression>
+					</datasetRun>
+					<jr:listContents height="42" width="413">
+						<textField>
+							<reportElement x="9" y="15" width="100" height="20" uuid="16dd1ddf-67ec-44d7-ba63-530271a9d27e"/>
+							<textFieldExpression><![CDATA[$F{trainingName}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="110" y="15" width="100" height="20" uuid="9af64c46-8537-4bb3-aa04-b2199094f43f"/>
+							<textFieldExpression><![CDATA[$F{trainingDescription}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+		</band>
+	</summary>
+</jasperReport>

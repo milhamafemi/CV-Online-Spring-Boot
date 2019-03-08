@@ -1,0 +1,137 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+        <meta name="description" content=""/>
+        <meta name="author" content=""/>
+        <link rel="icon" th:href="@{/dist/img/favicons/favicon.ico}"/>
+
+        <title>Dashboard Template for Bootstrap</title>
+
+        <!-- Bootstrap core CSS -->
+        <link th:href="@{/dist/css/bootstrap.min.css}" rel="stylesheet"/>
+        <!--Font Awesome-->
+        <link th:href="@{/dist/font-awesome/css/font-awesome.min.css}" rel="stylesheet"/>
+        <!--Datatables-->
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css"/>
+
+        <!-- Custom styles for this template -->
+        <link th:href="@{/dist/css/dashboard.css}" rel="stylesheet"/>
+        <link th:href="@{/plugins/sweetalert/sweetalert.css}" rel="stylesheet"/>
+    </head>
+
+    <body>
+        <div th:include="fragments/navigation::nav">
+
+        </div>
+
+        <div class="container-fluid">
+            <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+                <div class="sidebar-sticky">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="/">
+                                <span data-feather="home"></span>
+                                Main Dashboard <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="/admhome">
+                                <span data-feather="admhome"></span>
+                                Admin <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="/emphome">
+                                <span data-feather="emphome"></span>
+                                Employee <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="/rmhome">
+                                <span data-feather="rmhome"></span>
+                                Relationship Manager <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="/clienthome">
+                                <span data-feather="client"></span>
+                                Client <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <!--                        <li class="nav-item">
+                                                    <a class="nav-link active" href="/">
+                                                        <span data-feather="home"></span>
+                                                        Dashboard <span class="sr-only">(current)</span>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link " href="/project">
+                                                        <span data-feather="project"></span>
+                                                        Project <span class="sr-only">(current)</span>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link " href="/employee">
+                                                        <span data-feather="employee"></span>
+                                                        Employee <span class="sr-only">(current)</span>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link " href="/client">
+                                                        <span data-feather="client"></span>
+                                                        Client <span class="sr-only">(current)</span>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link " href="/informationEmployee">
+                                                        <span data-feather="client"></span>
+                                                        Information Employee <span class="sr-only">(current)</span>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item ">
+                                                    <a class="nav-link " href="/profilEmployee">
+                                                        <span data-feather="client"></span>
+                                                        Profil Employee <span class="sr-only">(current)</span>
+                                                    </a>
+                                                </li>-->
+                    </ul>
+
+                </div>
+            </nav>
+            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Welcome</h1>
+                </div>
+            </main>
+        </div>
+
+
+
+        <!-- Bootstrap core JavaScript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <!--jQuery-->
+        <script th:src="@{/dist/js/jquery-3.3.1.js}"></script>
+        <!--DataTables-->
+        <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+        <!--Popper-->
+        <script th:src="@{/dist/js/popper.min.js}"></script>
+        <!--Bootstrap-->
+        <script th:src="@{/dist/js/bootstrap.min.js}"></script>
+        <!--Sweetalert-->
+        <script th:src="@{/plugins/sweetalert/sweetalert.min.js}"></script>
+        <!-- Icons -->
+        <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+        <script>
+            feather.replace();
+        </script>
+        <script th:src="@{/dist/js/script.js}"  th:inline="javascript">
+
+        </script>
+        <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+    </body>
+</html>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="cv_cv_jar_0.0.1-SNAPSHOTPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>cv.cv.entities.Major</class>
+    <class>cv.cv.entities.Certification</class>
+    <class>cv.cv.entities.UserMii</class>
+    <class>cv.cv.entities.MajorUniversity</class>
+    <class>cv.cv.entities.Education</class>
+    <class>cv.cv.entities.QualificationEmployee</class>
+    <class>cv.cv.entities.Achievement</class>
+    <class>cv.cv.entities.Client</class>
+    <class>cv.cv.entities.University</class>
+    <class>cv.cv.entities.Training</class>
+    <class>cv.cv.entities.RoleMii</class>
+    <class>cv.cv.entities.Organization</class>
+    <class>cv.cv.entities.MiiInfo</class>
+    <class>cv.cv.entities.Experience</class>
+    <class>cv.cv.entities.Qualification</class>
+    <class>cv.cv.entities.Language</class>
+    <class>cv.cv.entities.Employee</class>
+    <class>cv.cv.entities.LanguageEmployee</class>
+    <class>cv.cv.entities.WorkAssignment</class>
+    <class>cv.cv.entities.ProjectEmployee</class>
+    <class>cv.cv.entities.Project</class>
+    <class>cv.cv.entities.Languages</class>
+    <class>cv.cv.entities.Foreignlanguage</class>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@localhost:1521:XE"/>
+      <property name="javax.persistence.jdbc.user" value="CV"/>
+      <property name="javax.persistence.jdbc.driver" value="oracle.jdbc.OracleDriver"/>
+      <property name="javax.persistence.jdbc.password" value="cv"/>
+    </properties>
+  </persistence-unit>
+</persistence>

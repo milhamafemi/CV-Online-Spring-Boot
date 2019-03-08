@@ -1,0 +1,335 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+        <meta name="description" content=""/>
+        <meta name="author" content=""/>
+        <link rel="icon" th:href="@{/dist/img/favicons/favicon.ico}"/>
+
+        <title>Dashboard Template for Bootstrap</title>
+
+        <!-- Bootstrap core CSS -->
+        <link th:href="@{/dist/css/bootstrap.min.css}" rel="stylesheet"/>
+        <!--Font Awesome-->
+        <link th:href="@{/dist/font-awesome/css/font-awesome.min.css}" rel="stylesheet"/>
+        <!--Datatables-->
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css"/>
+
+        <!-- Custom styles for this template -->
+        <link th:href="@{/dist/css/dashboard.css}" rel="stylesheet"/>
+        <link th:href="@{/plugins/sweetalert/sweetalert.css}" rel="stylesheet"/>
+    </head>
+
+    <body>
+        <div th:include="fragments/navigation::nav">
+
+
+        </div>
+
+        <div class="container-fluid">
+            <div class="row">
+                <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+                    <div class="sidebar-sticky">
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/rmproject">
+                                    <span data-feather="rmproject"></span>
+                                    RM Project <span class="sr-only">(current)</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+
+                <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                        <h1 class="h2" th:each=" pe: ${profilEmployee}" th:text="${pe.userMii.name}"></h1>
+                    </div>
+
+                    <!-- Content -->
+                    <h4><font color="#3973ac">Personal Data</font></h4>
+                    <div class="row" style="padding: 10px 0 10px 0">
+
+                    </div>
+
+                    <div class ="form edit" th:each=" pe: ${profilEmployee}">
+                        <table id="exampleProfil" class="table" style="width: 80%">
+                            <tr>
+                                <td>Date of Birth:</td>
+                                <td th:text="${#dates.format(pe.birthDate,'dd-MMM-YYYY')}"></td>
+                            </tr>  
+                            <tr>
+                                <td>Nationality:</td>
+                                <td th:text="${pe.nationality}"></td>
+                            </tr>
+                            <tr>
+                                <td>Marital Status:</td>
+                                <td th:text="${pe.maritalStatus}"></td>
+                            </tr>
+                            <tr>
+                                <td>Gender:</td>
+                                <td th:text="${pe.gender}"></td>
+                            </tr>
+                            <tr>
+                                <td>Religion:</td>
+                                <td th:text="${pe.religion}"></td>
+                            </tr>
+                            <tr>
+                                <td>Foreign Language:</td>
+                                <td  th:each="as : ${dataLanguageEmployee}"  th:text="${as.Language.name}"></td>
+                            </tr>
+                            <tr>
+                                <td>Postal Address:</td>
+                                <td> PT Mitra Integrasi Informatika <br> APL Tower 37th floor, Suite 1-8 <br> <br> Jl. LetJen S. Parman Kav 28, Tanjung Duren Selatan <br> <br> Grogol Petamburan, Jakarta Barat, 11470 <br>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Phone:</td>
+                                <td> +62 21 29 345 777 </td>
+                            </tr>
+                            <tr>
+                                <td>Email:</td>
+                                <td>recruitment@mii.co.id</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <br><br><br>
+                    <!-- /.End Content -->
+                    
+
+                    <!-- Education Content -->
+                    <h4><font color="#3973ac">Education</font></h4>
+                    <table id="exampleEducation" style="width: 90%">
+                        <tbody id="tblDataEducation">
+                            <tr th:each="as,i : ${dataEducation}"  >
+                                <td th:text="${i.count}"></td>
+                                <td></td>
+                                <td style="font-weight:bold" th:text="${as.majorUniversity.degree}"></td>
+                                <td style="font-weight:bold"> at </td>
+                                <td style="font-weight:bold" th:text="${as.majorUniversity.University.name}"></td>
+                                <td>,</td>
+                                <td>Majoring in</td>
+                                <td th:text="${as.majorUniversity.Major.name}"></td>
+                                <td></td>
+                                <td>GPA </td>
+                                <td th:text="${as.ip}"> </td>
+                                <td>Period </td>
+                                <td>(</td>
+                                <td th:text="${#dates.format(as.startDate,'YYYY')}"></td>
+                                <td>-</td>
+                                <td th:text="${#dates.format(as.endDate,'YYYY')}"> </td>
+                                <td>)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br><br><br>
+                    <!-- /.Education End Content -->
+
+                    <!-- Qualification Employee Content -->
+                    <h4><font color="#3973ac">Technical Qualification</font></h4>
+                    <table id="exampleQualificationEmployee" style="width: 25%">
+                        <tbody id="tblDataQualificationEmployee">
+                        <p style="font-weight:bold">Programming Languanges:</p>
+                        <tr th:each="as,i : ${dataQualificationEmployee}" th:if="${as.qualification.specialization} == 'programming language'" >
+                            <td th:text="${i.count}"></td>
+                            <td th:text="${as.qualification.name}"> </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <br>
+                    <table id="exampleQualificationEmployee" style="width: 25%">
+                        <tbody id="tblDataQualificationEmployee">
+                        <p style="font-weight:bold">Database Skills:</p>
+                        <tr th:each="as,i : ${dataQualificationEmployee}" th:if="${as.qualification.specialization} == 'database'" >
+                            <td th:text="${i.count}"></td>
+                            <td th:text="${as.qualification.name}"> </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <br>
+                    <table id="exampleQualificationEmployee" style="width: 25%">
+                        <tbody id="tblDataQualificationEmployee">
+                        <p style="font-weight:bold">Platform / Operating System:</p>
+                        <tr th:each="as,i : ${dataQualificationEmployee}" th:if="${as.qualification.specialization} == 'OS'" >
+                            <td th:text="${i.count}"></td>
+                            <td th:text="${as.qualification.name}"> </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <br>
+                    <table id="exampleQualificationEmployee" style="width: 25%">
+                        <tbody id="tblDataQualificationEmployee">
+                        <p style="font-weight:bold">Application:</p>
+                        <tr th:each="as,i : ${dataQualificationEmployee}" th:if="${as.qualification.specialization} == 'application'" >
+                            <td th:text="${i.count}"></td>
+                            <td th:text="${as.qualification.name}"> </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <br>
+                    <table id="exampleQualificationEmployee" style="width: 25%">
+                        <tbody id="tblDataQualificationEmployee">
+                        <p style="font-weight:bold">Development Tools:</p>
+                        <tr th:each="as,i : ${dataQualificationEmployee}" th:if="${as.qualification.specialization} == 'tool'" >
+                            <td th:text="${i.count}"></td>
+                            <td th:text="${as.qualification.name}"> </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <br> <br> <br>
+                    <!-- /.Qualification Employee End Content -->
+
+                    <!-- WorkAssignment Content -->
+                    <h4><font color="#3973ac">Work Assignment</font></h4>
+                    <table id="exampleWorkAssignment"  style="width: 50%">
+                        <tbody id="tblDataWorkAssignment">
+                            <tr th:each="as,i : ${dataWorkAssignment}"  >
+                                <td th:text="${i.count}"></td>
+                                <td style="font-weight:bold" th:text="${#dates.format(as.startDate,'MMMMMMMM YYYY')}"> </td>
+                                <td style="font-weight:bold">-</td>
+                                <td style="font-weight:bold" th:text="${#dates.format(as.endDate,'MMMMMMMM YYYY')}"> </td>
+                                <td style="font-weight:bold">,</td>
+                                <td style="font-weight:bold" th:text="${as.position}"> </td>
+                                <td style="font-weight:bold">at</td>
+                                <td style="font-weight:bold" th:text="${as.company}"></td>
+                                <td th:text="${as.jobDescription}"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br> <br> <br>
+                    <!-- /.WorkAssignment End Content -->
+
+                    <!-- Project Employee Content -->
+                    <h4><font color="#3973ac">Project</font></h4>
+                    <table id="exampleProject"  style="width: 50%">
+                        <tbody id="tblDataProject">
+                            <tr th:each="as,i : ${dataProject}"  >
+                                <td th:text="${i.count}"></td>
+                                <td style="font-weight:bold" th:text="${#dates.format(as.startDate,'MMMMMMMM YYYY')}"> </td>
+                                <td style="font-weight:bold">-</td>
+                                <td style="font-weight:bold" th:text="${#dates.format(as.endDate,'MMMMMMMM YYYY')}"> </td>
+                                <td style="font-weight:bold">:</td>
+                                <td style="font-weight:bold"></td>
+                                <td style="font-weight:bold">"</td>
+                                <td style="font-weight:bold" th:text="${as.project.name}"> </td>
+                                <td style="font-weight:bold">"</td>
+                                <td th:text="${as.jobDescription}"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br> <br> <br>
+                    <!-- /.Project Employee End Content -->
+
+                    <!-- Achievement Content -->
+                    <h4><font color="#3973ac">Achievement</font></h4>
+                    <table id="exampleAchievement"  style="width:50%">
+                        <tbody id="tblDataAchievement">
+                            <tr th:each="as,i : ${dataAchievement}">
+                                <td th:text="${i.count}"></td>
+                                <td th:text="${as.name}"> </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br> <br> <br>
+                    <!-- /.Achievement End Content -->
+
+                    <!-- Certification Content -->
+                    <h4><font color="#3973ac">Certification</font></h4>
+                    <table id="exampleCertification" style="width: 50%">
+                        <tbody id="tblDataCertification">
+                            <tr th:each="as,i : ${dataCertification}"  >
+                                <td th:text="${i.count}"></td>
+                                <td style="font-weight:bold" th:text="${as.name}"> </td>
+                                <td th:text="${as.description}"></td>
+                                <td th:text="${#dates.format(as.expiredDate,'dd-MMMMMMMM-YYYY')}"> </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br> <br> <br>
+                    <!-- /.Certification End Content -->
+
+                    <!-- Experience Content -->
+                    <h4><font color="#3973ac">Experience</font></h4>
+                    <table id="exampleExperience"  style="width: 50%">
+                        <tbody id="tblDataExperience">
+                            <tr th:each="as,i : ${dataExperience}"  >
+                                <td th:text="${i.count}"></td>
+                                <td style="font-weight:bold" th:text="${as.name}"> </td>
+                                <td th:text="${as.description}"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br> <br> <br>
+                    <!-- /.Experience End Content -->
+
+
+
+                    <!-- Organization Content -->
+                    <h4><font color="#3973ac">Organization</font></h4>
+                    <table id="exampleOrganization" style="width: 50%">
+                        <tbody id="tblDataOrganization">
+                            <tr th:each="as,i : ${dataOrganization}"  >
+                                <td th:text="${i.count}"></td>
+                                <td th:text="${as.position}"></td>
+                                <td th:text="${as.name}"></td>
+                                <td>(</td>
+                                <td th:text="${#dates.format(as.startDate,'MMMMMMMM YYYY')}"> </td>
+                                <td>-</td>
+                                <td th:text="${#dates.format(as.endDate,'MMMMMMMM YYYY')}"> </td>
+                                <td>)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br> <br> <br>
+                    <!-- /.Organization End Content -->
+
+
+
+                    <!-- Training Content -->
+                    <h4><font color="#3973ac">Training</font></h4>
+                    <table id="exampleTraining"  style="width: 50%">
+                        <tbody id="tblDataTraining">
+                            <tr th:each="as,i : ${dataTraining}"  >
+                                <td th:text="${i.count}"></td>
+                                <td style="font-weight:bold" th:text="${as.name}"> </td>
+                                <td th:text="${as.description}"></td>
+                                <td th:if="${as.certificate} == 'yes'">(</td>
+                                <td th:if="${as.certificate} == 'yes'">Certified</td>
+                                <td th:if="${as.certificate} == 'yes'">)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br> <br> <br>
+                    <!-- /.Training End Content -->
+
+                </main>
+            </div>
+        </div>
+
+        <!-- Bootstrap core JavaScript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <!--jQuery-->
+        <script th:src="@{/dist/js/jquery-3.3.1.js}"></script>
+        <!--DataTables-->
+        <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+        <!--Popper-->
+        <script th:src="@{/dist/js/popper.min.js}"></script>
+        <!--Bootstrap-->
+        <script th:src="@{/dist/js/bootstrap.min.js}"></script>
+        <!--Sweetalert-->
+        <script th:src="@{/plugins/sweetalert/sweetalert.min.js}"></script>
+        <!--<script th:src="@{/dist/js/script.js}"></script>-->
+        <!--<script th:src="@{/dist/js/profilEmployee.js}"></script>-->
+        <!-- Icons -->
+        <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+        <script>
+            feather.replace();
+        </script>
+
+        <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+    </body>
+</html>

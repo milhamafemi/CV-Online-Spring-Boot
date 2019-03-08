@@ -1,0 +1,224 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+        <meta name="description" content=""/>
+        <meta name="author" content=""/>
+        <link rel="icon" th:href="@{/dist/img/favicons/favicon.ico}"/>
+
+        <title>Dashboard Template for Bootstrap</title>
+
+        <!-- Bootstrap core CSS -->
+        <link th:href="@{/dist/css/bootstrap.min.css}" rel="stylesheet"/>
+        <!--Font Awesome-->
+        <link th:href="@{/dist/font-awesome/css/font-awesome.min.css}" rel="stylesheet"/>
+        <!--Datatables-->
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css"/>
+
+        <!-- Custom styles for this template -->
+        <link th:href="@{/dist/css/dashboard.css}" rel="stylesheet"/>
+        <link th:href="@{/plugins/sweetalert/sweetalert.css}" rel="stylesheet"/>
+    </head>
+
+    <body>
+        <div th:include="fragments/navigation::nav">
+
+
+        </div>
+
+        <div class="container-fluid">
+            <div class="row">
+                <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+                    <div class="sidebar-sticky">
+                        <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link " href="/admhome">
+                                <span data-feather="admhome"></span>
+                                Dashboard <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="/employee">
+                                <span data-feather="employee"></span>
+                                Employee <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="/project">
+                                <span data-feather="project"></span>
+                                Project <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active " href="/client">
+                                <span data-feather="client"></span>
+                                Client <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        </ul>
+                    </div>
+                </nav>
+
+                <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                        <h1 class="h2">Client</h1>
+                    </div>
+
+                    <!-- Content -->
+                    <h4>Data Client</h4>
+                    <div class="row" style="padding: 10px 0 10px 0">
+                        <div class="col-sm-6">
+                            <button data-target="#mdlAdd" data-toggle="modal" class="btn btn-warning"><i class="fa fa-plus">Add Data</i></button>
+                        </div>
+                    </div>
+                    <table id="example" class="table-striped" style="width: 100%">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Id</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Address</th>
+                                <th>Business</th>
+                                <th>Password</th>
+                                <th>Edit</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tblData">
+                            <tr th:each="us,i : ${dataClient}" th:if="${us.isDelete}=='NO'">
+                                <td th:text="${i.count}"></td>
+                                <td th:text="${us.id}"></td>
+                                <td th:text="${us.userMii.name}"> </td>
+                                <td th:text="${us.userMii.email}"></td>
+                                <td th:text="${us.address}"></td>
+                                <td th:text="${us.business}"></td>
+                                <td th:text="${us.userMii.password}"></td>
+
+
+                                <td> <button data-target="#mdlEdit" data-toggle="modal" class="btn btn-success btn-sm btnEdit"><i class="fa fa-edit"></i> Edit</button>
+                                    <button class="btn btn-danger btn-sm btnDelete" th:data-id="${us.id}"><i class="fa fa-trash"></i>Delete</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!-- modal add data -->
+                    <div class="modal fade" id="mdlAdd" tabindex="-1" role="dialog" aria-labelledby="modal-add" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modal-add">Add Client</h5>
+                                    <button class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <form th:action="@{/clientsave}" method="post" >
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <label for="idclient">Id :</label>
+                                            <input id="idclient" th:field="*{usersave.id}" class="form-control" type="text"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <input id="passwordclient" th:field="*{usersave.password}" class="form-control" type="hidden"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="nameclient">Name :</label>
+                                            <input id="nameclient" th:field="*{usersave.name}" class="form-control" type="text"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="email">Email :</label>
+                                            <input id="email" th:field="*{usersave.email}" class="form-control" type="text"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="address">Address :</label>
+                                            <input id="address" th:field="*{clientsave.address}"class="form-control" type="text"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="business">Business :</label>
+                                            <input id="business" th:field="*{clientsave.business}" class="form-control" type="text"/>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        <button type="submit" value="Submit" class="btn btn-default">Save</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.modal add data -->
+                    <!-- modal edit data -->
+                    <div class="modal fade" id="mdlEdit" tabindex="-1" role="dialog" aria-labelledby="modal-add" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modal-add">Edit Client</h5>
+                                    <button class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <form th:action="@{/clientedit}" method="post" >
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <label for="getIdClient">Id :</label>
+                                            <input id="getIdClient" th:field="*{usersave.id}" class="form-control" type="text"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <input id="getPasswordClient" th:field="*{usersave.password}" class="form-control" type="hidden"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="getNameClient">Name :</label>
+                                            <input id="getNameClient" th:field="*{usersave.name}" class="form-control" type="text"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="getEmailClient">Email :</label>
+                                            <input id="getEmailClient" th:field="*{usersave.email}" class="form-control" type="text"/>
+                                        </div>                                        
+                                        <div class="form-group">
+                                            <label for="getAddress">Address :</label>
+                                            <input id="getAddress" th:field="*{clientsave.address}" class="form-control" type="text"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="getBusiness">Business :</label>
+                                            <input id="getBusiness" th:field="*{clientsave.business}" class="form-control" type="text"/>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        <button type="submit" value="Submit" class="btn btn-default">Save</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.modal edit data -->
+                    <!-- /.End Content -->
+                </main>
+            </div>
+        </div>
+
+        <!-- Bootstrap core JavaScript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <!--jQuery-->
+        <script th:src="@{/dist/js/jquery-3.3.1.js}"></script>
+        <!--DataTables-->
+        <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+        <!--Popper-->
+        <script th:src="@{/dist/js/popper.min.js}"></script>
+        <!--Bootstrap-->
+        <script th:src="@{/dist/js/bootstrap.min.js}"></script>
+        <!--Sweetalert-->
+        <script th:src="@{/plugins/sweetalert/sweetalert.min.js}"></script>
+        <!--<script th:src="@{/dist/js/script.js}"></script>-->
+        <script th:src="@{/dist/js/client.js}"></script>
+        <!-- Icons -->
+        <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+        <script>
+            feather.replace();
+        </script>
+
+        <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+    </body>
+</html>

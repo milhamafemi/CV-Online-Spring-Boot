@@ -1,0 +1,142 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+        <meta name="description" content=""/>
+        <meta name="author" content=""/>
+        <link rel="icon" th:href="@{/dist/img/favicons/favicon.ico}"/>
+
+        <title>Dashboard Template for Bootstrap</title>
+
+        <!-- Bootstrap core CSS -->
+        <link th:href="@{/dist/css/bootstrap.min.css}" rel="stylesheet"/>
+        <!--Font Awesome-->
+        <link th:href="@{/dist/font-awesome/css/font-awesome.min.css}" rel="stylesheet"/>
+        <!--Datatables-->
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css"/>
+
+        <!-- Custom styles for this template -->
+        <link th:href="@{/dist/css/dashboard.css}" rel="stylesheet"/>
+        <link th:href="@{/plugins/sweetalert/sweetalert.css}" rel="stylesheet"/>
+    </head>
+
+    <body>
+        <div th:include="fragments/navigation::nav">
+
+
+        </div>
+
+        <div class="container-fluid">
+            <div class="row">
+                <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+                    <div class="sidebar-sticky">
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/">
+                                    <span data-feather="home"></span>
+                                    Dashboard <span class="sr-only">(current)</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link " href="/employee">
+                                    <span data-feather="employee"></span>
+                                    Employee <span class="sr-only">(current)</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="/detailEmployee">
+                                    <span data-feather="employee"></span>
+                                    Detail Employee <span class="sr-only">(current)</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+
+                <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                        <h1 class="h2">Employee</h1>
+                    </div>
+
+                    <!-- Content -->
+                    <h4>Data Employee</h4>
+                    <div class="row" style="padding: 10px 0 10px 0">
+                        <div class="col-sm-6">
+                            <button data-target="#mdlAdd" data-toggle="modal" class="btn btn-warning"><i class="fa fa-plus">Add Data</i></button>
+                        </div>
+                    </div>
+                    <table id="example" class="table-striped" style="width: 100%">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Id</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Religion</th>
+                                <th>Phone</th>
+                                <th>Marital Status</th>
+                                <th>Nationality</th>
+                                <th>Date of Birth</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                <th>Edit</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tblData">
+                            <tr th:each="as,i : ${detailEmployee}" >
+                                <td th:text="${i.count}"></td>
+                                <td th:text="${as.id}"></td>
+                                <td th:text="${as.userMii.name}"> </td>
+                                <td th:text="${as.userMii.email}"></td>
+                                <td th:text="${as.religion}"></td>
+                                <td th:text="${as.phone}"></td>
+                                <td th:text="${as.maritalStatus}"></td>
+                                <td th:text="${as.nationality}"></td>
+                                <td th:text="${as.birthDate}"></td>
+                                <td th:text="${as.startDate}"></td>
+                                <td th:text="${as.endDate}"></td>
+
+
+                                <td> <button data-target="#mdlEdit" data-toggle="modal" class="btn btn-success btn-sm btnEdit"><i class="fa fa-edit"></i> Edit</button>
+                                    <button class="btn btn-danger btn-sm btnDelete" th:data-id="${as.id}"><i class="fa fa-trash"></i>Delete</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!-- modal add data -->
+
+                    <!-- /.modal add data -->
+                    <!-- modal edit data -->
+ 
+                    <!-- /.modal edit data -->
+                    <!-- /.End Content -->
+                </main>
+            </div>
+        </div>
+
+        <!-- Bootstrap core JavaScript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <!--jQuery-->
+        <script th:src="@{/dist/js/jquery-3.3.1.js}"></script>
+        <!--DataTables-->
+        <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+        <!--Popper-->
+        <script th:src="@{/dist/js/popper.min.js}"></script>
+        <!--Bootstrap-->
+        <script th:src="@{/dist/js/bootstrap.min.js}"></script>
+        <!--Sweetalert-->
+        <script th:src="@{/plugins/sweetalert/sweetalert.min.js}"></script>
+        <script th:src="@{/dist/js/script.js}"></script>
+        <script th:src="@{/dist/js/client.js}"></script>
+        <!-- Icons -->
+        <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+        <script>
+            feather.replace();
+        </script>
+
+        <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+    </body>
+</html>
